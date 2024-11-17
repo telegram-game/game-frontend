@@ -1,0 +1,76 @@
+/* Card.module.css */
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #2f3554bf, #1f2336bf);
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.buttonPrimary {
+  background: linear-gradient(180deg, #41a5ef, #2695e7, #2695e7 108.04%);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+  gap: 15px;
+  width: 100%;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.statText {
+  font-weight: bold;
+}
+
+.bufferText {
+  color: #28a745;
+}
+
+.actionButton {
+  background: linear-gradient(180deg, #41a5ef, #2695e7, #2695e7 108.04%);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.actionButtonText {
+  margin-left: 10px;
+}
+
+.actionButton:hover {
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+}
+
+.rotateIcon {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 16px;
+  height: 16px;
+}

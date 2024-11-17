@@ -1,0 +1,155 @@
+.flexContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flexSpaceBetween {
+  gap: 2px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  direction: ltr;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.gridItem {
+  grid-column: span 1;
+}
+
+.imgSize {
+  width: 32px;
+  height: 32px;
+}
+
+.gridTextContainer {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mlSmall {
+  margin-left: 8px;
+}
+
+.mrSmall {
+  margin-right: 8px;
+}
+
+.text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  max-width: 80%;
+  overflow: hidden;
+}
+
+.flexSelfEnd {
+  align-self: flex-end;
+}
+
+.flexContainer {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.imgSmall {
+  width: 18px;
+  height: 18px;
+}
+
+.match {
+  border: rgb(38 149 231 / 1) 1px solid;
+  border-radius: 1rem;
+  padding: 5px;
+  overflow: hidden;
+  position: relative;
+}
+.match::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 100%;
+  width: 50%;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255);
+  background: radial-gradient(#2e90fa, #1570ef) no-repeat;
+  background-size: 50% 60%;
+  background-position: 30% 60%;
+  filter: blur(25px) opacity(0.6);
+  content: "";
+}
+
+.match::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  height: 100%;
+  width: 50%;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 /1);
+  background: radial-gradient(#b6271f, #bc4c46) no-repeat;
+  background-size: 60% 70%;
+  background-position: 75% 60%;
+  filter: blur(25px) opacity(0.6);
+  content: "";
+}
+
+.button {
+  border: none;
+  border-radius: 0.2rem;
+  background: linear-gradient(
+    to bottom,
+    #4a90e2,
+    #004e92
+  ); /* example gradient */
+}
+
+.contentLeft {
+  position: absolute;
+  left: 10px;
+  padding: 0.5rem 0;
+}
+
+.contentRight {
+  position: absolute;
+  right: 10px;
+  padding: 0.5rem 0;
+}
+
+.defaultInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skillLine {
+  display: flex;
+  flex-direction: row;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  /* flex-direction: row; */
+}
+
+.skillInfo {
+  display: flex;
+  flex-direction: row;
+}

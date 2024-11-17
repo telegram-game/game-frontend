@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20"
+    class="size-5" fill="none">
+    <path
+        color="#fff"
+        d="M7.375 1.804a3.25 3.25 0 0 1 3.25 0l4.66 2.69A3.25 3.25 0 0 1 16.91 7.31v5.382a3.25 3.25 0 0 1-1.625 2.814l-4.66 2.69a3.25 3.25 0 0 1-3.25 0l-4.66-2.69a3.25 3.25 0 0 1-1.625-2.814V7.309a3.25 3.25 0 0 1 1.625-2.814z"
+        stroke="currentColor" stroke-width="1.5"></path>
+</svg>

@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tabButton {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+.tab {
+  background-color: transparent;
+  color: #3182ce;
+  border: 1px solid #3182ce;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tabActive {
+  background-color: #3182ce;
+  color: #fff;
+}

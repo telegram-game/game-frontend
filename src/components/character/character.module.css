@@ -1,0 +1,19 @@
+.character_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.character_image {
+  width: 100px;
+  height: auto;
+}
+
+.character_pet_image {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+}

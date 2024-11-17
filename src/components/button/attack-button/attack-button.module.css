@@ -1,0 +1,73 @@
+.container {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.buttonContainer {
+  grid-column-start: 1;
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  flex: 1;
+}
+
+.buttonAttack {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  justify-content: center;
+  display: flex;
+}
+
+/* Button Styling */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  color: white;
+  border-radius: 1rem;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  background-color: #2d82b7;
+}
+
+.buttonActive {
+  background-color: #ff7a00;
+}
+
+.buttonIcon {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.buttonIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.finalStep,
+.hiddenSlide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+.finalButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #5cb85c;
+  border-radius: 1rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+}

@@ -1,0 +1,65 @@
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+}
+
+.statsToken {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem; /* Default size-8 (you can adjust according to your need) */
+  height: 2rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Icon shadow */
+  border-radius: 50%; /* Make the container circular */
+  transition: width 0.3s ease, height 0.3s ease; /* For smooth resizing */
+  /* flex flex-col items-center relative */
+}
+
+.tokenIcon {
+  width: 100%; /* Make the image fit inside the container */
+  height: 100%;
+  border-radius: 50%; /* Make sure the image itself is circular */
+}
+
+/*legion*/
+.statsLegion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content; /* Let it adjust to content height */
+  margin-top: 1rem; /* Top margin */
+}
+
+.legionBackground {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  z-index: 0; /* Ensure it is behind the button */
+  border-radius: 1rem; /* Rounded corners */
+  /* Override rounding with !important */
+  border-radius: 2rem !important; /* Ensure stronger border radius */
+}
+
+.legionButton {
+  display: flex; /* Use Flexbox to align button content (icon + text) */
+  align-items: center; /* Vertically center the content */
+  gap: 0.5rem; /* Space between the icon and text */
+  padding: 0.25rem 1.25rem; /* Padding */
+  background-color: #072234;
+  color: white;
+  border: 2px solid #3b82f6;
+  border-radius: 1rem;
+  font-size: 1.125rem;
+  height: 3rem;
+}
+
+.rankIcon {
+  width: 1.25rem; /* Icon width */
+  height: auto; /* Maintain aspect ratio */
+}
