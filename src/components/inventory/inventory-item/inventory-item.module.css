@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+
+  padding-bottom: 0.125rem;
+  background-color: rgb(17 63 105);
+  border: 2px solid rgb(38 149 231);
+  border-radius: 0.75rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: none;
+}
+
+.button img {
+  height: 3.5rem;
+  width: 3.5rem;
+}

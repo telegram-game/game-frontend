@@ -1,4 +1,43 @@
 .attackButton {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 40px);
+  top: 170px;
+  z-index: 1;
+}
+
+.inventoryButton {
+  width: 60px;
+  height: 60px;
+  background-image: linear-gradient(180deg, #009aff 25%, #015f9c);
+  border: #fff 1px solid;
+  border-radius: 15px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
+.inventoryButton img {
+  width: 40px;
+  height: 40px;
+}
+
+.inventoryButton span {
+  position: absolute;
+  top: 2.3rem;
 }

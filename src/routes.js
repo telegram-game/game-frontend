@@ -1,3 +1,5 @@
+import InventoryPage from "./pages/inventory";
+import NotFound from "./pages/404";
 import AirdropPage from "./pages/airdrop";
 import EarnPage from "./pages/earn";
 import FightPage from "./pages/fight";
@@ -35,6 +37,12 @@ const routes = [
     isNav: true,
   },
   {
+    path: "/kombat/inventory",
+    name: "Inventory",
+    component: <InventoryPage />,
+    isNav: false,
+  },
+  {
     path: "/friend",
     name: "Friend",
     component: <FriendPage />,
@@ -52,6 +60,18 @@ const routes = [
     path: "/fight",
     name: "Fight",
     component: <FightPage />,
+    isNav: false,
+  },
+  {
+    path: "*",
+    name: "404",
+    component: <NotFound />,
+    isNav: false,
+  },
+  {
+    path: "/unauthorized",
+    name: "Unauthorized",
+    component: <h1>Unauthorized</h1>,
     isNav: false,
   },
 ];
