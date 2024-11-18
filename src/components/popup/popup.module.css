@@ -1,0 +1,50 @@
+.container {
+  position: absolute;
+  background: #fff;
+  height: 35vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 40px 40px 0px 0px;
+  padding: 1.5rem;
+  color: #000;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.action {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: -0.75rem;
+  right: 0.75rem;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}

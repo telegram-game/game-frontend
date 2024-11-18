@@ -1,11 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #1d2b4e;
-  color: white;
-  text-align: center;
-  height: 100vh;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -18,5 +10,4 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   position: relative;
-  /* height: 100vh; */
 }
