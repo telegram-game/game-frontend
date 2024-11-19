@@ -13,20 +13,17 @@ const KombatPage = () => {
         <div className={styles.absolute}>
           <div></div>
           <button
-            onClick={() => {
-              navigate("/kombat/inventory");
-            }}
+            onClick={() => navigate("/kombat/inventory")}
             className={styles.inventoryButton}
-            type="button"
+            type='button'
           >
             <img
-              src="https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp"
-              alt="armor img"
+              src='https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp'
+              alt='armor img'
             />
             <span>Inventory</span>
           </button>
         </div>
-        {/* <div className={styles.container}> */}
         <CharacterStats />
         <div className={styles.characterContainer}>
           <Character />
@@ -35,7 +32,7 @@ const KombatPage = () => {
           <AttackButtonComponent />
         </div>
       </div>
-        <Footer />
+      <Footer />
     </>
   );
 };

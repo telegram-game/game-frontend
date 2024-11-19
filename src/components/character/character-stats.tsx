@@ -1,19 +1,32 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import styles from "./character-stats.module.css";
+import { useAppSelector } from "../../modules/redux/hook";
+import { useNavigate } from "react-router-dom";
+import Popup from "../popup";
 
 const CharacterStats = () => {
+  const navigate = useNavigate();
+  const { hero, gameProfile } = useAppSelector(({ app }) => app);
+  const [isShowPoupChangeSkill, setIsShowPopupChangeSkill] = useState(false);
+  const onHandleChangeSkill = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setIsShowPopupChangeSkill(true);
+  };
+
   const statics = useMemo(() => {
     const stats = {
       stats: [
         {
           icon: null,
-          text: "House: Moonbix",
+          text: `House: ${gameProfile!.houseData.name}`,
           style: {
             justifyContent: "space-between",
           },
           action: (
-            <button className={styles.actionButton}>
-              <img src="./assets/icons/rotate.svg" alt="Rotate" />
+            <button
+              onClick={() => navigate("/house")}
+              className={styles.actionButton}
+            >
+              <img src='./assets/icons/rotate.svg' alt='Rotate' />
             </button>
           ),
         },
@@ -22,7 +35,7 @@ const CharacterStats = () => {
           text: "Level: 23",
           hint: (
             <div className={styles.statusIcon}>
-              <img src="./assets/icons/info.svg" alt="Info" />
+              <img src='./assets/icons/info.svg' alt='Info' />
             </div>
           ),
           style: {
@@ -32,35 +45,38 @@ const CharacterStats = () => {
         },
         {
           icon: "./assets/icons/attack.svg",
-          text: "Attack: 1110",
+          text: `Attack ${hero!.attack.point}`,
           buffer: 60,
         },
         {
           icon: "./assets/icons/luck.svg",
-          text: "Luck: 9.56 - 11.11",
+          text: `Luck: ${gameProfile?.houseData.attributes.luckLevel}`,
         },
         {
           icon: "./assets/icons/hp.svg",
-          text: "HP: 8232",
+          text: `HP: ${hero!.hp.point}`,
           buffer: 300,
         },
         {
           icon: "./assets/icons/fatal-blow.svg",
-          text: "Fatal blow",
+          text: gameProfile!.skillData.name,
           style: {
             justifyContent: "space-between",
           },
           action: (
-            <button className={styles.actionButton}>
+            <button
+              onClick={onHandleChangeSkill}
+              className={styles.actionButton}
+            >
               <img
-                className="skillIcon"
-                src="./assets/icons/fatal-blow-skill.svg"
-                alt="Fatal blow Skill"
+                className='skillIcon'
+                src='./assets/icons/fatal-blow-skill.svg'
+                alt='Fatal blow Skill'
               />
               <img
                 className={styles.rotateIcon}
-                src="./assets/icons/rotate.svg"
-                alt="Rotate"
+                src='./assets/icons/rotate.svg'
+                alt='Rotate'
               />
             </button>
           ),
@@ -85,9 +101,19 @@ const CharacterStats = () => {
         ))}
       </div>
     );
-  }, []);
+  }, [hero]);
 
-  return <div className={styles.cardContainer}>{statics}</div>;
+  return (
+    <>
+      <div className={styles.cardContainer}>{statics}</div>
+      <Popup
+        isOpen={isShowPoupChangeSkill}
+        onClose={() => setIsShowPopupChangeSkill(false)}
+      >
+        Change skill set
+      </Popup>
+    </>
+  );
 };
 
 export default CharacterStats;

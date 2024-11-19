@@ -19,7 +19,7 @@ const handleFetchResponse = <T>({
   }
 
   // if (!HttpSuccessCodeRegex.test(String(status))) {
-  if (status > HttpStatusCode.Accepted) {
+  if (status >= HttpStatusCode.BadRequest) {
     return Promise.reject(
       new Error(fetchErrorMessage ?? "Something went wrong!")
     );

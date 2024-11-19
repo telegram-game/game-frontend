@@ -65,7 +65,7 @@ const fetchRequest = async <T>(
       standardizeResponse: (data) => {
         return {
           data: data.data,
-          errorMessage: data?.data.errorMessage,
+          errorMessage: data?.data?.detail,
         };
       },
       // forbiddenErrorMessage: "forbiddenErrorMessage",

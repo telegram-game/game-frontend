@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 3;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fff;
+    border-radius: 0.75rem;
+    grid-template-rows: 55px;
+    gap: 0.75rem;
+    height: 100%;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background-color: #0e2f4f;
+
+    cursor: pointer;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.description {
+    font-size: .75rem;
+    color: #2d3748;
+
+}
+
+.active {
+    background-color: #3182ce;
+    color: #fff;
+    cursor: unset;
+}

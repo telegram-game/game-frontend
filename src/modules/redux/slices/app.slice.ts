@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_ENDPOINTS } from "../../../constants";
-import { AppInformation, Attribute, AttributeType } from "../../../interfaces";
+import { AppInformation, Attribute, AttributeType, ChangeHouseRequest, HeroAttribute, HeroAttributeValue } from "../../../interfaces";
 import { GameHouse } from "../../../interfaces/configuration-data.interface";
 import { Get, Post } from "../../http-client/http.fetch";
 
@@ -13,14 +13,26 @@ export interface AppState {
       INGAME: number;
       INGAME_2: number;
     };
-    attributes: {
-      [key in AttributeType]: Attribute;
-      // POCKET: Attribute;
-      // SALARY: Attribute;
-    };
-    // [key: string]: any;
+    attributes: Record<AttributeType, Attribute>;
+    houseData: {
+      name: GameHouse
+      description: string
+      attributes: {
+        attackLevel: number
+        hpLevel: number
+        luckLevel: number
+      }
+    }
+    skillData: {
+      code: string
+      name: string
+      description: string
+    }
   };
-  hero?: Record<string, any>;
+  hero?: Record<HeroAttribute, HeroAttributeValue> & {
+    skill: string
+    items: Array<any>
+  };
 }
 
 const initialState: AppState = {
@@ -54,18 +66,15 @@ export const requestGameProfile = createAsyncThunk(
 
 export const requestChangeHouse = createAsyncThunk(
   "app/changeHouse",
-  async (
-    payload: {
-      gameProfileId: string;
-      house: GameHouse;
-    },
-    { dispatch }
-  ) =>
-    Post(API_ENDPOINTS.GAME.CHANGE_HOUSE, payload).then((res) => {
-      return {
-        gameProfile: res,
-      };
+  async (payload: ChangeHouseRequest, { getState, dispatch }) => {
+    const { app } = getState() as { app: AppState }
+    await Post(API_ENDPOINTS.GAME.CHANGE_HOUSE, {
+      ...payload,
+      gameProfileId: app.gameProfile!.id,
+
     })
+    dispatch(requestGameProfile())
+  }
 );
 
 export const requestGetAllInventories = createAsyncThunk(
@@ -137,6 +146,7 @@ const appSlice = createSlice({
         ...action.payload,
       };
     });
+    builder.addCase(requestChangeHouse.fulfilled, (state) => state);
   },
 });
 

@@ -9,6 +9,7 @@ import InventoryPage from "./pages/inventory";
 import KombatPage from "./pages/kombat";
 import ShopPage from "./pages/shop";
 import UpgradePage from "./pages/upgrade";
+import HousePage from "./pages/house";
 
 export const routes: Array<
   RouteObject & { name: string; isNav: boolean; icon?: string }
@@ -77,5 +78,11 @@ export const routes: Array<
     name: "Shop",
     isNav: false,
     element: <ShopPage />,
+  },
+  {
+    path: "house",
+    name: "House",
+    isNav: false,
+    element: <HousePage />,
   },
 ];
