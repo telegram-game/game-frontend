@@ -10,7 +10,7 @@ const InventoryPage = () => {
 
   useEffect(() => {
     dispatch(requestGetAllInventories());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>

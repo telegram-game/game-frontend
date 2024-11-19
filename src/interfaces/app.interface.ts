@@ -6,3 +6,10 @@ export interface AppInformation extends ConfigurationData {
   systemData: any;
   version: string;
 }
+
+export type AttributeType = "POCKET" | "SALARY" | "HONOR";
+export interface Attribute {
+  level: number;
+  cost: number;
+  description: number;
+}

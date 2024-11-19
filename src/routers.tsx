@@ -7,6 +7,7 @@ import FriendPage from "./pages/friend";
 import HomePage from "./pages/home/index";
 import InventoryPage from "./pages/inventory";
 import KombatPage from "./pages/kombat";
+import ShopPage from "./pages/shop";
 import UpgradePage from "./pages/upgrade";
 
 export const routes: Array<
@@ -70,5 +71,11 @@ export const routes: Array<
     name: "404",
     isNav: false,
     element: <NotFoundPage />,
+  },
+  {
+    path: "shop",
+    name: "Shop",
+    isNav: false,
+    element: <ShopPage />,
   },
 ];

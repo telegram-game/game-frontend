@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_ENDPOINTS } from "../../../constants";
-import { AppInformation } from "../../../interfaces";
+import { AppInformation, Attribute, AttributeType } from "../../../interfaces";
 import { GameHouse } from "../../../interfaces/configuration-data.interface";
 import { Get, Post } from "../../http-client/http.fetch";
 
@@ -12,6 +12,11 @@ export interface AppState {
     balances: {
       INGAME: number;
       INGAME_2: number;
+    };
+    attributes: {
+      [key in AttributeType]: Attribute;
+      // POCKET: Attribute;
+      // SALARY: Attribute;
     };
     // [key: string]: any;
   };

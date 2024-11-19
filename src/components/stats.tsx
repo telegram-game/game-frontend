@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import styles from "./stats.module.css";
 import { useAppSelector } from "../modules/redux/hook";
+import styles from "./stats.module.css";
 
 const Stats = () => {
-  const { gameProfile, appInformation } = useAppSelector(({ app }) => app);
+  const { gameProfile } = useAppSelector(({ app }) => app);
 
   const Legion = useMemo(() => {
     return (

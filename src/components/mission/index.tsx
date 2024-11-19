@@ -1,5 +1,4 @@
 import React from "react";
-import Item from "../item";
 import styles from "./missions.module.css";
 
 const Missions = () => {
@@ -48,9 +47,9 @@ const Missions = () => {
 
       {missions?.length ? (
         <div className={styles.mission}>
-          {missions?.map((mission, index) => (
+          {/* {missions?.map((mission, index) => (
             <Item data={mission} key={index} />
-          ))}
+          ))} */}
         </div>
       ) : (
         <div className={styles.mission}>

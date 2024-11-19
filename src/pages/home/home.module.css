@@ -10,7 +10,10 @@
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   position: relative;
-  /* height: 100vh; */
+}
+
+.characterContainer {
+  height: 100vh;
 }
 
 .checkNewsButton {
@@ -30,6 +33,7 @@
   justify-content: space-between;
   width: calc(100% - 40px);
   top: 100px;
+  z-index: 1;
 }
 
 .icon {

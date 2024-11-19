@@ -9,31 +9,33 @@ const KombatPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      {" "}
-      <div className={styles.absolute}>
-        <div></div>
-        <button
-          onClick={() => {
-            navigate("/kombat/inventory");
-          }}
-          className={styles.inventoryButton}
-          type="button"
-        >
-          <img
-            src="https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp"
-            alt="armor img"
-          />
-          <span>Inventory</span>
-        </button>
-      </div>
-      {/* <div className={styles.container}> */}
+      <div className={styles.container}>
+        <div className={styles.absolute}>
+          <div></div>
+          <button
+            onClick={() => {
+              navigate("/kombat/inventory");
+            }}
+            className={styles.inventoryButton}
+            type="button"
+          >
+            <img
+              src="https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp"
+              alt="armor img"
+            />
+            <span>Inventory</span>
+          </button>
+        </div>
+        {/* <div className={styles.container}> */}
         <CharacterStats />
-        <Character />
+        <div className={styles.characterContainer}>
+          <Character />
+        </div>
         <div className={styles.attackButton}>
           <AttackButtonComponent />
         </div>
+      </div>
         <Footer />
-      {/* </div> */}
     </>
   );
 };
