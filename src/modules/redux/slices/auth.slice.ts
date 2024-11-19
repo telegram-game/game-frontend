@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_ENDPOINTS } from "../../../constants";
 import { SignInRequest } from "../../../interfaces";
 import { Post } from "../../http-client/http.fetch";
+import { persistAccessToken } from "../storages";
+import { requestGameProfile, requestGetHero } from "./app.slice";
 
 export interface AuthState {
   accessToken?: string;
@@ -20,7 +22,12 @@ export const requestSignIn = createAsyncThunk(
       (res: any) => {
         if (!res?.accessToken) return initialState;
 
+        persistAccessToken(res.accessToken);
+        dispatch(requestGameProfile());
+        dispatch(requestGetHero());
+
         return {
+          ...initialState,
           accessToken: res.accessToken,
           refreshToken: res.refreshToken,
         };

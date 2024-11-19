@@ -1,6 +1,6 @@
-import axios from 'axios'
-import handleFetchResponse from './response'
-import { FetchRequestError, FetchRequestOptions, HttpStatusCode } from './type'
+import axios from "axios";
+import handleFetchResponse from "./response";
+import { FetchRequestError, FetchRequestOptions, HttpStatusCode } from "./type";
 
 const buildFetchRequest = <T>({
   request,

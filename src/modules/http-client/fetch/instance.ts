@@ -1,5 +1,5 @@
-import axios, { RawAxiosRequestHeaders } from 'axios'
-import { BuildFetchInstanceOptions, FetchInstance } from './type'
+import axios, { RawAxiosRequestHeaders } from "axios";
+import { BuildFetchInstanceOptions, FetchInstance } from "./type";
 
 const buildFetchInstance = async ({
   baseURL,
@@ -8,25 +8,24 @@ const buildFetchInstance = async ({
   ...params
 }: BuildFetchInstanceOptions): Promise<FetchInstance> => {
   const headers: RawAxiosRequestHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json'
-  }
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json",
+  };
 
   if (getAccessToken) {
-    let token = await getAccessToken()
-
+    let token = await getAccessToken();
     if (token) {
       headers.Authorization = customizeAuthorizeHeader
         ? customizeAuthorizeHeader(token)
-        : `Bearer ${token}`
+        : `Bearer ${token}`;
     }
   }
 
   return axios.create({
     baseURL,
     headers,
-    ...params
-  })
-}
+    ...params,
+  });
+};
 
-export default buildFetchInstance
+export default buildFetchInstance;

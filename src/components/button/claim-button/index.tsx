@@ -1,28 +1,32 @@
 import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../modules/redux/hook";
+import { requestClaimToken } from "../../../modules/redux/slices/app.slice";
 import styles from "./claim-button.module.css";
 
-const randomRate = (min: number, max: number) => {
-  const randomNum = Math.random() * (max - min) + min;
-  return randomNum.toFixed(3); // Returns a string
-};
 type ClaimButtonComponentProps = {
-  rate?: number;
   onClaim?: (tokenValue: number) => void;
 };
 
-const ClaimButtonComponent = (props: ClaimButtonComponentProps) => {
-  const [tokenValue, setTokenValue] = React.useState(0);
+const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
+  const { gameProfile, appInformation } = useAppSelector(({ app }) => app);
+  const dispatch = useAppDispatch();
+  // requestClaimToken
+  const [tokenValue, setTokenValue] = React.useState(
+    gameProfile!.balances.INGAME
+  );
+  const [gapTimePerSeconds] = React.useState(
+    appInformation!.system.baseTokenInvestSpeed.INGAME.gapTime
+  );
+  const [speedPerSecond] = React.useState(
+    appInformation!.system.baseTokenInvestSpeed.INGAME.speed
+  );
   const [isClaimed, setIsClaimed] = React.useState(false);
-  const [rate, setRate] = React.useState<string>();
+
   const ref = React.useRef<NodeJS.Timeout>();
 
   const interval = setTimeout(() => {
-    setTokenValue(tokenValue + Number(rate) / 60 / 60 / 1000);
+    setTokenValue(tokenValue + speedPerSecond / 60 / 1000);
   }, 1);
-
-  useEffect(() => {
-    setRate(String(props?.rate || randomRate(0.01, 1)));
-  }, [props?.rate]);
 
   // Clear interval on unmount
   useEffect(() => {
@@ -36,9 +40,14 @@ const ClaimButtonComponent = (props: ClaimButtonComponentProps) => {
       e.preventDefault();
       return;
     }
+    dispatch(
+      requestClaimToken({
+        token: "INGAME",
+      })
+    );
 
     setIsClaimed(true);
-    if (props?.onClaim) props.onClaim(tokenValue);
+    if (onClaim) onClaim(tokenValue);
 
     setTokenValue(0);
 
@@ -48,7 +57,7 @@ const ClaimButtonComponent = (props: ClaimButtonComponentProps) => {
     // Reset token value after 9 minutes
     ref.current = setTimeout(() => {
       setIsClaimed(false);
-    }, 1000 * 60 * 9);
+    }, gapTimePerSeconds! * 1000);
   };
 
   return (
@@ -62,7 +71,9 @@ const ClaimButtonComponent = (props: ClaimButtonComponentProps) => {
           />
           <div>
             <span className={styles.tokenValue}>{tokenValue.toFixed(5)}</span>
-            <span className={styles.tokenRate}>{rate} TOK/hour</span>
+            <span className={styles.tokenRate}>
+              {speedPerSecond * 60 * 60} TOK/hour
+            </span>
           </div>
         </div>
         <button

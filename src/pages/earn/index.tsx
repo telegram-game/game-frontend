@@ -6,7 +6,7 @@ import Missions from "../../components/mission";
 const EarnPage = () => {
   return (
     <>
-      <BalanceComponent balance={10} />
+      <BalanceComponent />
       <BonusComponent />
       <Missions />
       <Footer />

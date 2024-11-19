@@ -1,11 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Character from "../character/character";
 import Popup from "../popup";
 import Tab from "../tab";
 import InventoryItem from "./inventory-item";
 import styles from "./inventory.module.css";
 
-const Inventory = () => {
+type InventoryProps = {
+  items?: {
+    name: string;
+    image: string;
+  }[];
+};
+const Inventory = ({ items }: InventoryProps) => {
   const tabs = [
     {
       name: "Equipment",
@@ -21,50 +27,19 @@ const Inventory = () => {
     },
   ];
 
-  const items = [
-    {
-      name: "Item 1",
-      image:
-        "https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp",
-    },
-    {
-      name: "Item 2",
-      image:
-        "https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp",
-    },
-    {
-      name: "Item 3",
-      image:
-        "https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp",
-    },
-    {
-      name: "Item 4",
-      image:
-        "https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp",
-    },
-    {
-      name: "Item 5",
-      image:
-        "https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp",
-    },
-    {
-      name: "Item 6",
-      image:
-        "https://staggering.tonkombat.com/assets/inventory-armor-C4tU1hsm.webp",
-    },
-  ];
-
   const itemMemo = React.useMemo(() => {
     const el: Array<React.ReactNode> = [];
+    if (!items?.length) return <div></div>;
+
     for (let i = 0; i < items.length; i += 2) {
       let item1 = items[i];
       let item2 = items[i + 1] !== undefined ? items[i + 1] : null; // Check if the second item exists
       el.push(
-        <>
+        <Fragment key={i}>
           {item1 ? <InventoryItem item={item1} /> : <div></div>}
           <div></div>
           {item2 ? <InventoryItem item={item2} /> : <div></div>}
-        </>
+        </Fragment>
       );
     }
     return el;
@@ -81,11 +56,11 @@ const Inventory = () => {
 
       <Tab data={tabs} defaultValue={"EQUIPMENT"} onChanged={() => {}} />
       <div className={styles.inventoryItem}>
-        {items.map((item, index) => (
-          <InventoryItem item={item} />
+        {items?.map((item, index) => (
+          <InventoryItem item={item} key={index} />
         ))}
       </div>
-      <Popup>
+      <Popup isOpen={false}>
         <div className={styles.box}>
           <div className={styles.boxHeader}>
             <p>Inventory</p>

@@ -5,7 +5,7 @@ import UpgradeComponent from "../../components/upgrade";
 const UpgradePage = () => {
   return (
     <>
-      <BalanceComponent balance={10} />
+      <BalanceComponent />
       <UpgradeComponent />
       <Footer />
     </>

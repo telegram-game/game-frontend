@@ -3,10 +3,10 @@ import { redirect } from "react-router-dom";
 
 import { API_ENDPOINTS } from "../../constants";
 import {
-    persistAccessToken,
-    persistRefreshToken,
-    readAccessToken,
-    readRefreshToken,
+  persistAccessToken,
+  persistRefreshToken,
+  readAccessToken,
+  readRefreshToken,
 } from "../redux/storages";
 import { buildFetchInstance, buildFetchRequest } from "./fetch";
 import { FetchInstance } from "./fetch/type";
@@ -35,19 +35,17 @@ type FetchOptions = {
   skipHandleError?: boolean;
 };
 
-const fetchRequest = async (
+const fetchRequest = async <T>(
   buildRequest: (_instance: AxiosInstance) => Promise<AxiosResponse<any, any>>,
   options?: FetchOptions
-) => {
+): Promise<T> => {
   const fetchInstance = await buildFetchInstance({
-    baseURL: "/api",
+    baseURL: API_ENDPOINTS.BASE_URL,
     getAccessToken: readAccessToken,
     customizeAuthorizeHeader: (accessToken: string) => `Bearer ${accessToken}`,
   });
 
   // TODO Implement to get the translation
-  const t = (str: string) => str;
-
   return buildFetchRequest<AxiosResponse<any, any>>({
     request: () => buildRequest(fetchInstance),
     refreshToken: () => handleRefreshToken(fetchInstance),
@@ -59,7 +57,8 @@ const fetchRequest = async (
 
       // TODO implement error handling
       console.error({
-        message: e?.message ?? t("validation.500"),
+        options,
+        e,
       });
     },
     responseOptions: {
@@ -69,17 +68,14 @@ const fetchRequest = async (
           errorMessage: data?.data.errorMessage,
         };
       },
-      forbiddenErrorMessage: t("validation.access-deny-action"),
-      fetchErrorMessage: t("validation.500"),
-      serverErrorMessage: t("validation.500"),
+      // forbiddenErrorMessage: "forbiddenErrorMessage",
+      // fetchErrorMessage: "fetchErrorMessage",
+      // serverErrorMessage: "serverErrorMessage",
     },
   });
 };
 
-export const Get = async (
-  url: string,
-  options?: FetchOptions
-): Promise<AxiosResponse<object>> =>
+export const Get = async <T>(url: string, options?: FetchOptions): Promise<T> =>
   fetchRequest((instance) => instance.get(url), options);
 
 export const Post = async (

@@ -10,13 +10,13 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
+  <div className={styles.container}>
     <ReduxProviders>
-      <div className={styles.container}>
-        <App />
-      </div>
+      <App />
     </ReduxProviders>
-  </React.StrictMode>
+  </div>
+//   <React.StrictMode>
+//  </React.StrictMode>
 );
 
 reportWebVitals();

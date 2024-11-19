@@ -1,28 +1,10 @@
-// import { useAppDispatch, useAppSelector } from "../modules/redux/hook";
-// import { requestSignIn } from "../modules/redux/slices/auth.slice";
-import { useEffect } from "react";
 import ClaimButtonComponent from "../../components/button/claim-button";
 import Character from "../../components/character/character";
 import Footer from "../../components/footer";
 import Stats from "../../components/stats";
-import { useAppDispatch, useAppSelector } from "../../modules/redux/hook";
-import { requestSignIn } from "../../modules/redux/slices/auth.slice";
 import styles from "./home.module.css";
 
 const HomePage = () => {
-  const dispatch = useAppDispatch();
-  const auth = useAppSelector((state) => state.auth);
-
-  useEffect(() => {
-    !auth.accessToken &&
-      dispatch(
-        requestSignIn({
-          provider: "TELEGRAM",
-          code: "cm3jncaux0001akyagxhavaex",
-        })
-      );
-  }, []);
-
   return (
     <>
       <Stats />
