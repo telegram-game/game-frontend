@@ -14,13 +14,29 @@ export interface Attribute {
   description: number;
 }
 
-
-export type HeroAttribute = 'id' | 'attack' | 'hp' | 'evasion' | 'critRate' | 'critDame' | 'lifeSteal' | 'reflect' | 'hpRegen' | 'skill' | 'items'
+export type HeroAttribute =
+  | "id"
+  | "attack"
+  | "hp"
+  | "evasion"
+  | "critRate"
+  | "critDame"
+  | "lifeSteal"
+  | "reflect"
+  | "hpRegen"
+  | "skill"
+  | "items";
 export interface HeroAttributeValue {
-  point: number
+  point: number;
   percent: number;
-  percentPerTime: number
+  percentPerTime: number;
 }
 export interface ChangeHouseRequest {
-  house: GameHouse
+  house: GameHouse;
 }
+export type MatchType = "RANKED" | "FRIEND";
+
+export type Hero = Record<HeroAttribute, HeroAttributeValue> & {
+  skill: string;
+  items: Array<any>;
+};

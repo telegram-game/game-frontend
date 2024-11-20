@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../modules/redux/hook";
-import Popup from "../popup";
 import styles from "./character-stats.module.css";
 
 const CharacterStats = () => {
@@ -26,7 +25,7 @@ const CharacterStats = () => {
               onClick={() => navigate("/house")}
               className={styles.actionButton}
             >
-              <img src='./assets/icons/rotate.svg' alt='Rotate' />
+              <img src="./assets/icons/rotate.svg" alt="Rotate" />
             </button>
           ),
         },
@@ -35,7 +34,7 @@ const CharacterStats = () => {
           text: "Level: 23",
           hint: (
             <div className={styles.statusIcon}>
-              <img src='./assets/icons/info.svg' alt='Info' />
+              <img src="./assets/icons/info.svg" alt="Info" />
             </div>
           ),
           style: {
@@ -69,14 +68,14 @@ const CharacterStats = () => {
               className={styles.actionButton}
             >
               <img
-                className='skillIcon'
-                src='./assets/icons/fatal-blow-skill.svg'
-                alt='Fatal blow Skill'
+                className="skillIcon"
+                src="./assets/icons/fatal-blow-skill.svg"
+                alt="Fatal blow Skill"
               />
               <img
                 className={styles.rotateIcon}
-                src='./assets/icons/rotate.svg'
-                alt='Rotate'
+                src="./assets/icons/rotate.svg"
+                alt="Rotate"
               />
             </button>
           ),
@@ -106,12 +105,12 @@ const CharacterStats = () => {
   return (
     <>
       <div className={styles.cardContainer}>{statics}</div>
-      <Popup
+      {/* <Popup
         isOpen={isShowPoupChangeSkill}
         onClose={() => setIsShowPopupChangeSkill(false)}
       >
         Change skill set
-      </Popup>
+      </Popup> */}
     </>
   );
 };

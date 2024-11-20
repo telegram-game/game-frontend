@@ -1,18 +1,27 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { MatchType } from "../../../interfaces";
+import { usePopup } from "../../../modules/popup/popup.provider";
+import { useAppDispatch } from "../../../modules/redux/hook";
+import { requestFight } from "../../../modules/redux/slices/app.slice";
+import FindFriendPopup from "../../popup/find-friend";
 import styles from "./attack-button.module.css";
 
 const AttackButtonComponent = () => {
   const navigate = useNavigate();
-  const [currentMatch, setCurrentMatch] = React.useState(0);
+  const dispatch = useAppDispatch();
+  const [matchType, setMatchType] = React.useState<MatchType>("RANKED");
+  const { openPopup, closePopup } = usePopup();
 
   const stageMemo = React.useMemo(() => {
-    const matchs = [
+    const matchs: Array<{ title: string; value: MatchType }> = [
       {
         title: "Ranked match",
+        value: "RANKED",
       },
       {
         title: "Friendly match",
+        value: "FRIEND",
       },
     ];
     return matchs.map((match, index) => (
@@ -20,9 +29,9 @@ const AttackButtonComponent = () => {
         <button
           type="button"
           className={`${styles.button} ${
-            currentMatch === index ? styles.buttonActive : ""
+            matchType === match.value ? styles.buttonActive : ""
           }`}
-          onClick={() => setCurrentMatch(index)}
+          onClick={() => setMatchType(match.value)}
         >
           <div className={styles.buttonIcon}>
             <img
@@ -35,7 +44,39 @@ const AttackButtonComponent = () => {
         </button>
       </div>
     ));
-  }, [currentMatch, setCurrentMatch]);
+  }, [matchType, setMatchType]);
+
+  const handleFightWithFriend = (username: string) => {
+    dispatch(
+      requestFight({
+        username,
+        type: matchType,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        closePopup();
+        navigate("/fight");
+      });
+  };
+
+  const onFindMatch = () => {
+    if (matchType === "FRIEND") {
+      openPopup(<FindFriendPopup onFight={handleFightWithFriend} />);
+    } else {
+      dispatch(
+        requestFight({
+          username: "",
+          type: matchType,
+        })
+      )
+        .unwrap()
+        .then(() => {
+          navigate("/fight");
+        });
+    }
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -43,7 +84,7 @@ const AttackButtonComponent = () => {
         <div className={styles.buttonAttack}>
           <button
             type="button"
-            onClick={() => navigate("/fight")}
+            onClick={onFindMatch}
             className={`${styles.button} ${styles.friendly}`}
           >
             <div className={styles.buttonIcon}></div>
@@ -56,6 +97,16 @@ const AttackButtonComponent = () => {
           </button>
         </div>
       </div>
+      {/* <Popup isOpen={true}>
+        <div className={styles.popup}>
+          <button className={styles.closeButton} onClick={() => {}}>
+            X
+          </button>
+          <div className={styles.content}>
+            <span>Choose your stage</span>
+          </div>
+        </div>
+      </Popup> */}
     </>
   );
 };

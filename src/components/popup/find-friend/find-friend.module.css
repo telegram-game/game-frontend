@@ -1,0 +1,116 @@
+.container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5rem;
+  color: #000;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(0 0 0/71%);
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  background-color: #207ca8d4;
+  border-radius: 1rem;
+  border: 1px solid rgb(38 149 231);
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.popupHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupHeader img {
+  width: 120px;
+  height: 120px;
+}
+
+.popupBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.popupBody p {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  text-align: center;
+}
+
+.popupInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem;
+  border-radius: 0.5rem;
+  gap: 0.5rem;
+  background-color: rgb(255 255 255);
+  padding: 0 0.875rem;
+  margin: 0;
+  padding: 0;
+}
+.popupInput input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(0 0 0);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.popupButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 1.25rem;
+}
+
+.popupButton button {
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #4f6d7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600; */
+
+  font-weight: 600;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  text-shadow: 0px 2px 0 rgba(0, 0, 0, 0.6);
+  background: linear-gradient(180deg, #2f3554, #1f2336);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+  color: #fff;
+  border-radius: 0.5rem;
+}

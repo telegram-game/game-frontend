@@ -13,6 +13,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   direction: ltr;
+  margin-bottom: 2rem;
 }
 
 .ltr {
@@ -139,8 +140,10 @@
 }
 
 .skillLine {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  justify-content: center;
+  width: 100%;
 }
 
 .skill {

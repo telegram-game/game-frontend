@@ -3,7 +3,7 @@ import { API_ENDPOINTS } from "../../../constants";
 import { SignInRequest } from "../../../interfaces";
 import { Post } from "../../http-client/http.fetch";
 import { persistAccessToken } from "../storages";
-import { requestGameProfile, requestGetHero } from "./app.slice";
+import { requestGameProfile, requestGetHero, requestGetMe } from "./app.slice";
 
 export interface AuthState {
   accessToken?: string;
@@ -25,6 +25,7 @@ export const requestSignIn = createAsyncThunk(
         persistAccessToken(res.accessToken);
         dispatch(requestGameProfile());
         dispatch(requestGetHero());
+        dispatch(requestGetMe());
 
         return {
           ...initialState,

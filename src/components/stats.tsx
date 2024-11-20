@@ -3,7 +3,7 @@ import { useAppSelector } from "../modules/redux/hook";
 import styles from "./stats.module.css";
 
 const Stats = () => {
-  const { gameProfile } = useAppSelector(({ app }) => app);
+  const { me } = useAppSelector(({ app }) => app);
 
   const Legion = useMemo(() => {
     return (
@@ -36,7 +36,7 @@ const Stats = () => {
           className={styles.tokenIcon}
         />
         &nbsp;
-        <strong>{Number(gameProfile?.balances?.INGAME || 0).toFixed(2)}</strong>
+        <strong>{Number(me?.balances?.INGAME || 0).toFixed(2)}</strong>
       </div>
       {Legion}
     </div>

@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import Character from "../character/character";
-import Popup from "../popup";
 import Tab from "../tab";
 import InventoryItem from "./inventory-item";
 import styles from "./inventory.module.css";
@@ -60,13 +59,13 @@ const Inventory = ({ items }: InventoryProps) => {
           <InventoryItem item={item} key={index} />
         ))}
       </div>
-      <Popup isOpen={false}>
+      {/* <Popup isOpen={false}>
         <div className={styles.box}>
           <div className={styles.boxHeader}>
             <p>Inventory</p>
           </div>
         </div>
-      </Popup>
+      </Popup> */}
     </>
   );
 };

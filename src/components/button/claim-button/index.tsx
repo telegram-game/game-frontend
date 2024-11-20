@@ -8,12 +8,10 @@ type ClaimButtonComponentProps = {
 };
 
 const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
-  const { gameProfile, appInformation } = useAppSelector(({ app }) => app);
+  const { me, appInformation } = useAppSelector(({ app }) => app);
   const dispatch = useAppDispatch();
-  // requestClaimToken
-  const [tokenValue, setTokenValue] = React.useState(
-    gameProfile?.balances?.INGAME || 0
-  );
+
+  const [tokenValue, setTokenValue] = React.useState(me?.balances?.INGAME || 0);
   const [gapTimePerSeconds] = React.useState(
     appInformation?.system.baseTokenInvestSpeed?.INGAME?.gapTime || 0
   );
@@ -32,6 +30,16 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
   useEffect(() => {
     return () => clearInterval(interval);
   }, [interval]);
+
+  useEffect(() => {
+    const max = 30; // hours;
+    const maxClaim = new Date();
+    // TODO
+    maxClaim.setDate(maxClaim.getDate() + max);
+
+    const toa = new Date(me?.lastClaimAt?.INGAME || 0);
+    setTokenValue(10);
+  }, [me]);
 
   const handleClaimClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

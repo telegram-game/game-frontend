@@ -1,45 +1,68 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_ENDPOINTS } from "../../../constants";
-import { AppInformation, Attribute, AttributeType, ChangeHouseRequest, HeroAttribute, HeroAttributeValue } from "../../../interfaces";
+import {
+  AppInformation,
+  Attribute,
+  AttributeType,
+  ChangeHouseRequest,
+  Hero,
+  MatchType,
+  SignInRequest,
+} from "../../../interfaces";
 import { GameHouse } from "../../../interfaces/configuration-data.interface";
 import { Get, Post } from "../../http-client/http.fetch";
 
 export interface AppState {
   appInformation?: AppInformation;
   inventories?: Array<any>;
+  provider: SignInRequest["provider"];
   gameProfile?: {
     id: string;
+
+    attributes: Record<AttributeType, Attribute>;
+    houseData: {
+      name: GameHouse;
+      description: string;
+      attributes: {
+        attackLevel: number;
+        hpLevel: number;
+        luckLevel: number;
+      };
+    };
+    skillData: {
+      code: string;
+      name: string;
+      description: string;
+    };
+  };
+  hero?: Hero;
+
+  matchResult?: {
+    initData: {
+      leftHeroes: Array<Hero>;
+      rightHeroes: Array<Hero>;
+    };
+  };
+  me?: {
     balances: {
       INGAME: number;
       INGAME_2: number;
     };
-    attributes: Record<AttributeType, Attribute>;
-    houseData: {
-      name: GameHouse
-      description: string
-      attributes: {
-        attackLevel: number
-        hpLevel: number
-        luckLevel: number
-      }
-    }
-    skillData: {
-      code: string
-      name: string
-      description: string
-    }
-  };
-  hero?: Record<HeroAttribute, HeroAttributeValue> & {
-    skill: string
-    items: Array<any>
+    lastClaimAt: {
+      INGAME: number;
+      INGAME_2: number;
+    };
   };
 }
 
 const initialState: AppState = {
+  provider: "TELEGRAM",
   appInformation: undefined,
   inventories: undefined,
   gameProfile: undefined,
   hero: undefined,
+  matchResult: undefined,
+  me: undefined,
 };
 
 export const requestAppInformation = createAsyncThunk(
@@ -67,13 +90,12 @@ export const requestGameProfile = createAsyncThunk(
 export const requestChangeHouse = createAsyncThunk(
   "app/changeHouse",
   async (payload: ChangeHouseRequest, { getState, dispatch }) => {
-    const { app } = getState() as { app: AppState }
+    const { app } = getState() as { app: AppState };
     await Post(API_ENDPOINTS.GAME.CHANGE_HOUSE, {
       ...payload,
       gameProfileId: app.gameProfile?.id,
-
-    })
-    dispatch(requestGameProfile())
+    });
+    dispatch(requestGameProfile());
   }
 );
 
@@ -109,6 +131,39 @@ export const requestClaimToken = createAsyncThunk(
     dispatch(requestGameProfile());
     return result;
   }
+);
+
+export const requestFight = createAsyncThunk(
+  "app/fight",
+  async (
+    payload: { type: MatchType; username: string },
+    { getState, dispatch }
+  ) => {
+    const { app } = getState() as { app: AppState };
+
+    const url =
+      payload.type === "FRIEND"
+        ? API_ENDPOINTS.GAME.FIGHT_WITH_FRIEND
+        : API_ENDPOINTS.GAME.FIGHT_RANKED;
+
+    return await Post(url, {
+      gameProfileId: app.gameProfile?.id,
+      provider: app.provider,
+      providerId: payload.username,
+    }).then((rs: any) => ({
+      matchResult: rs,
+    }));
+  }
+);
+
+export const requestGetMe = createAsyncThunk(
+  "app/getMe",
+  async (_, { dispatch }) =>
+    Get<any>(API_ENDPOINTS.BALANCE.ME).then((res) => {
+      return {
+        me: res,
+      };
+    })
 );
 
 const appSlice = createSlice({
@@ -147,6 +202,19 @@ const appSlice = createSlice({
       };
     });
     builder.addCase(requestChangeHouse.fulfilled, (state) => state);
+    builder.addCase(requestFight.fulfilled, (state, action) => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    });
+
+    builder.addCase(requestGetMe.fulfilled, (state, action) => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    });
   },
 });
 

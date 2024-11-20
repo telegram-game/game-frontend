@@ -2,7 +2,7 @@ import { useAppSelector } from "../../modules/redux/hook";
 import styles from "./balance.module.css";
 
 const BalanceComponent = () => {
-  const { gameProfile } = useAppSelector(({ app }) => app);
+  const { me } = useAppSelector(({ app }) => app);
 
   return (
     <div className={styles.container}>
@@ -13,7 +13,7 @@ const BalanceComponent = () => {
           className={styles.token}
         />
         <span className={styles.balanceText}>
-          Balance: {gameProfile?.balances?.INGAME || 0}
+          Balance: {me?.balances?.INGAME || 0}
         </span>
       </div>
     </div>

@@ -4,7 +4,6 @@ import Character from "../../components/character/character";
 import Footer from "../../components/footer";
 import Stats from "../../components/stats";
 import styles from "./home.module.css";
-import Popup from "../../components/popup";
 import { useState } from "react";
 
 const HomePage = () => {
@@ -33,12 +32,12 @@ const HomePage = () => {
       {/* <button className={styles.checkNewsButton}>Check News</button> */}
       <ClaimButtonComponent />
       <Footer />
-      <Popup
+      {/* <Popup
         isOpen={isShowWarriorPack}
         onClose={() => setIsShowWarriorPack(false)}
       >
         <h1>Warrior Pack</h1>
-      </Popup>
+      </Popup> */}
     </>
   );
 };

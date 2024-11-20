@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Attribute, AttributeType } from "../../interfaces";
 import { useAppSelector } from "../../modules/redux/hook";
 import Item from "../item";
-import Popup from "../popup";
 import styles from "./upgrade.module.css";
 type UpgradeComponentProps = {};
 const UpgradeComponent = (props: UpgradeComponentProps) => {
@@ -23,7 +22,7 @@ const UpgradeComponent = (props: UpgradeComponentProps) => {
   };
   return (
     <div>
-      <Popup isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      {/* <Popup isOpen={isOpen} onClose={() => setIsOpen(false)}>
         {itemUpgrade ? (
           <>
             <h1>On upgrade {itemUpgrade?.attriuteType}</h1>
@@ -45,7 +44,7 @@ const UpgradeComponent = (props: UpgradeComponentProps) => {
             </div>
           </>
         ) : null}
-      </Popup>
+      </Popup> */}
       <div className={styles.upgradeContainer}>
         {Object.entries(gameProfile?.attributes || {}).map(([key, value]) => (
           <Item
