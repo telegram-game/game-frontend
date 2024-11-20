@@ -38,10 +38,6 @@ function App() {
       } else data[key as TelegramKeyPair] = decodeURIComponent(value);
     });
 
-    if (!data || !data["#tgWebAppData"]?.user?.id) {
-      throw new Error("Telegram user data not found");
-    }
-
     if (!app.appInformation) {
       loader.start();
       dispatch(requestAppInformation())
@@ -52,6 +48,10 @@ function App() {
     }
     if (!auth.accessToken) {
       loader.start();
+
+      if (!data || !data["#tgWebAppData"]?.user?.id) {
+        throw new Error("Telegram user data not found");
+      }
       dispatch(
         requestSignIn({
           provider: "TELEGRAM",

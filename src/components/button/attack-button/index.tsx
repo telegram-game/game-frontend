@@ -27,7 +27,7 @@ const AttackButtonComponent = () => {
     return matchs.map((match, index) => (
       <div key={index} className={styles.buttonContainer}>
         <button
-          type="button"
+          type='button'
           className={`${styles.button} ${
             matchType === match.value ? styles.buttonActive : ""
           }`}
@@ -35,8 +35,8 @@ const AttackButtonComponent = () => {
         >
           <div className={styles.buttonIcon}>
             <img
-              src="./assets/icons/match.svg"
-              alt="match"
+              src='./assets/icons/match.svg'
+              alt='match'
               className={styles.rankIcon}
             />
           </div>
@@ -51,7 +51,7 @@ const AttackButtonComponent = () => {
       requestFight({
         username,
         type: matchType,
-      })
+      }),
     )
       .unwrap()
       .then(() => {
@@ -62,13 +62,24 @@ const AttackButtonComponent = () => {
 
   const onFindMatch = () => {
     if (matchType === "FRIEND") {
-      openPopup(<FindFriendPopup onFight={handleFightWithFriend} />);
+      openPopup(
+        <FindFriendPopup
+          closePopup={closePopup}
+          onFight={(username) => {
+            if (!username) {
+              console.error("Please input the friend username");
+              return;
+            }
+            handleFightWithFriend(username);
+          }}
+        />,
+      );
     } else {
       dispatch(
         requestFight({
           username: "",
           type: matchType,
-        })
+        }),
       )
         .unwrap()
         .then(() => {
@@ -83,14 +94,14 @@ const AttackButtonComponent = () => {
         {stageMemo}
         <div className={styles.buttonAttack}>
           <button
-            type="button"
+            type='button'
             onClick={onFindMatch}
             className={`${styles.button} ${styles.friendly}`}
           >
             <div className={styles.buttonIcon}></div>
             <img
-              src="./assets/icons/fight.svg"
-              alt="Fight icon"
+              src='./assets/icons/fight.svg'
+              alt='Fight icon'
               className={styles.rankIcon}
             />
             Fight
