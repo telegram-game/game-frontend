@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_ENDPOINTS } from "../../../constants";
 import { SignInRequest } from "../../../interfaces";
 import { Post } from "../../http-client/http.fetch";
-import { persistAccessToken } from "../storages";
+import { getAppCode, persistAccessToken, setAppCode } from "../storages";
 import { requestGameProfile, requestGetHero, requestGetMe } from "./app.slice";
 
 export interface AuthState {
@@ -17,8 +17,17 @@ const initialState: AuthState = {
 
 export const requestSignIn = createAsyncThunk(
   "auth/signIn",
-  async (payload: SignInRequest, { dispatch }) =>
-    Post(API_ENDPOINTS.AUTH.SIGN_IN, payload, { skipHandleError: true }).then(
+  async (payload: SignInRequest, { dispatch }) => {
+    let code = await getAppCode();
+
+    if (!code) {
+      code = crypto.randomUUID().replace(/-/g, "");
+      await setAppCode(code);
+    }
+    return Post(API_ENDPOINTS.AUTH.SIGN_IN, {
+      ...payload,
+      // code: code,
+    }, { skipHandleError: true }).then(
       (res: any) => {
         if (!res?.accessToken) return initialState;
 
@@ -34,6 +43,7 @@ export const requestSignIn = createAsyncThunk(
         };
       }
     )
+  }
 );
 
 const authSlice = createSlice({

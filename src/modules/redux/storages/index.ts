@@ -1,2 +1,2 @@
 export * from './auth.storage';
-export * from './loading.storage';
+export * from './app.storage';
