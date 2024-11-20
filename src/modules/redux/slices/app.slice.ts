@@ -48,7 +48,7 @@ export interface AppState {
       INGAME: number;
       INGAME_2: number;
     };
-    lastClaimAt: {
+    lastClaimedAt: {
       INGAME: number;
       INGAME_2: number;
     };
@@ -129,6 +129,7 @@ export const requestClaimToken = createAsyncThunk(
   async (payload: { token: "INGAME" | "INGAME_2" }, { dispatch }) => {
     const result = await Post(API_ENDPOINTS.BALANCE.CLAIM, payload);
     dispatch(requestGameProfile());
+    dispatch(requestGetMe());
     return result;
   }
 );

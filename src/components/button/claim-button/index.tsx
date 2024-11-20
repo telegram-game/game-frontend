@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../modules/redux/hook";
 import { requestClaimToken } from "../../../modules/redux/slices/app.slice";
 import styles from "./claim-button.module.css";
@@ -11,61 +11,74 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
   const { me, appInformation } = useAppSelector(({ app }) => app);
   const dispatch = useAppDispatch();
 
-  const [tokenValue, setTokenValue] = React.useState(me?.balances?.INGAME || 0);
-  const [gapTimePerSeconds] = React.useState(
-    appInformation?.system.baseTokenInvestSpeed?.INGAME?.gapTime || 0
-  );
-  const [speedPerSecond] = React.useState(
-    appInformation?.system.baseTokenInvestSpeed?.INGAME?.speed || 0
-  );
-  const [isClaimed, setIsClaimed] = React.useState(false);
+  const [tokenValue, setTokenValue] = React.useState(0);
+  const [gapTimePerSeconds, setGapTimePerSeconds] = React.useState<number>();
+  const [speedPerSecond, setSpeedPerSecond] = React.useState(0);
 
   const ref = React.useRef<NodeJS.Timeout>();
 
-  const interval = setTimeout(() => {
-    setTokenValue(tokenValue + speedPerSecond / 60 / 1000);
-  }, 1);
-
-  // Clear interval on unmount
-  useEffect(() => {
-    return () => clearInterval(interval);
-  }, [interval]);
+  const interval = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const max = 30; // hours;
-    const maxClaim = new Date();
+    return () => {
+      interval.current && clearTimeout(interval.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (interval.current) clearTimeout(interval.current);
+    interval.current = setTimeout(() => {
+      setTokenValue(tokenValue + speedPerSecond / 60 / 1000);
+    }, 1);
+  }, [interval, speedPerSecond]);
+
+  useEffect(() => {
     // TODO
-    maxClaim.setDate(maxClaim.getDate() + max);
+    const max = 30; // hours;
 
-    const toa = new Date(me?.lastClaimAt?.INGAME || 0);
-    setTokenValue(10);
-  }, [me]);
+    const lastClaim = new Date(me?.lastClaimedAt?.INGAME || 0);
+
+    const now = new Date();
+
+    const diff = now.getTime() - lastClaim.getTime();
+
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    const speedPerSecond =
+      appInformation?.system.baseTokenInvestSpeed?.INGAME?.speed || 0;
+    const gapTimePerSeconds =
+      appInformation?.system.baseTokenInvestSpeed?.INGAME?.gapTime || 0;
+    const token = seconds * speedPerSecond;
+
+    setGapTimePerSeconds(gapTimePerSeconds);
+    setSpeedPerSecond(speedPerSecond);
+    setTokenValue(token);
+  }, [appInformation, me]);
 
   const handleClaimClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    if (isClaimed || tokenValue < 0) {
+    const lastClaim = new Date(me?.lastClaimedAt?.INGAME || 0);
+    const now = new Date();
+    const nextClaim = new Date(
+      lastClaim.getTime() + gapTimePerSeconds! * 1000,
+    ).getTime();
+
+    if (nextClaim > now.getTime()) {
+      console.error(
+        `Please claim after ${new Date(nextClaim).toLocaleString()} seconds`,
+      );
       e.preventDefault();
       return;
     }
+
     dispatch(
       requestClaimToken({
         token: "INGAME",
-      })
+      }),
     );
 
-    setIsClaimed(true);
     if (onClaim) onClaim(tokenValue);
-
-    setTokenValue(0);
-
-    // Clear previous timeout
-    if (ref.current) clearTimeout(ref.current);
-
-    // Reset token value after 9 minutes
-    ref.current = setTimeout(() => {
-      setIsClaimed(false);
-    }, gapTimePerSeconds! * 1000);
   };
 
   return (
@@ -73,8 +86,8 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
       <div className={styles.claimButton}>
         <div className={styles.tokenInfo}>
           <img
-            src="https://staggering.tonkombat.com/assets/TOKIcon-m0UJTJMj.webp"
-            alt="Token Icon"
+            src='https://staggering.tonkombat.com/assets/TOKIcon-m0UJTJMj.webp'
+            alt='Token Icon'
             className={styles.icon}
           />
           <div>
@@ -84,11 +97,7 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
             </span>
           </div>
         </div>
-        <button
-          disabled={isClaimed}
-          className={styles.claimButtonText}
-          onClick={handleClaimClick}
-        >
+        <button className={styles.claimButtonText} onClick={handleClaimClick}>
           Claim
         </button>
       </div>
