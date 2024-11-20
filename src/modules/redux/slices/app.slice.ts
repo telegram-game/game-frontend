@@ -70,7 +70,7 @@ export const requestChangeHouse = createAsyncThunk(
     const { app } = getState() as { app: AppState }
     await Post(API_ENDPOINTS.GAME.CHANGE_HOUSE, {
       ...payload,
-      gameProfileId: app.gameProfile!.id,
+      gameProfileId: app.gameProfile?.id,
 
     })
     dispatch(requestGameProfile())
@@ -83,7 +83,7 @@ export const requestGetAllInventories = createAsyncThunk(
     const { app } = getState() as { app: AppState };
 
     return Get<any>(
-      API_ENDPOINTS.INVENTORY.GET_ALL + `?gameProfileId=${app.gameProfile!.id}`
+      API_ENDPOINTS.INVENTORY.GET_ALL + `?gameProfileId=${app.gameProfile?.id}`
     ).then((res) => {
       return {
         inventories: res,

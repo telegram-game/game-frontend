@@ -1,5 +1,7 @@
 export const API_ENDPOINTS = {
-  BASE_URL: process.env.REACT_APP_API_ENDPOINT,
+  BASE_URL:
+    process.env.REACT_APP_API_ENDPOINT ||
+    "https://game-backend-n47q.onrender.com",
   AUTH: {
     SIGN_IN: "/api/v1.0/auth/login/by-provider",
     REFRESH_TOKEN: "/api/v1.0/auth/refresh-token",

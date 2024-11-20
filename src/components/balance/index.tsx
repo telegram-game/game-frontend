@@ -13,7 +13,7 @@ const BalanceComponent = () => {
           className={styles.token}
         />
         <span className={styles.balanceText}>
-          Balance: {gameProfile!.balances.INGAME || 0}
+          Balance: {gameProfile?.balances?.INGAME || 0}
         </span>
       </div>
     </div>

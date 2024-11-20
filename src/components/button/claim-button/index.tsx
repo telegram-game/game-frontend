@@ -12,13 +12,13 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
   const dispatch = useAppDispatch();
   // requestClaimToken
   const [tokenValue, setTokenValue] = React.useState(
-    gameProfile!.balances.INGAME
+    gameProfile?.balances?.INGAME || 0
   );
   const [gapTimePerSeconds] = React.useState(
-    appInformation!.system.baseTokenInvestSpeed.INGAME.gapTime
+    appInformation?.system.baseTokenInvestSpeed?.INGAME?.gapTime || 0
   );
   const [speedPerSecond] = React.useState(
-    appInformation!.system.baseTokenInvestSpeed.INGAME.speed
+    appInformation?.system.baseTokenInvestSpeed?.INGAME?.speed || 0
   );
   const [isClaimed, setIsClaimed] = React.useState(false);
 
@@ -70,9 +70,9 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
             className={styles.icon}
           />
           <div>
-            <span className={styles.tokenValue}>{tokenValue.toFixed(5)}</span>
+            <span className={styles.tokenValue}>{tokenValue?.toFixed(5)}</span>
             <span className={styles.tokenRate}>
-              {speedPerSecond * 60 * 60} TOK/hour
+              {(speedPerSecond || 0) * 60 * 60} TOK/hour
             </span>
           </div>
         </div>

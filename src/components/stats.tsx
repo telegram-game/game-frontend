@@ -36,7 +36,7 @@ const Stats = () => {
           className={styles.tokenIcon}
         />
         &nbsp;
-        <strong>{Number(gameProfile!.balances.INGAME || 0).toFixed(2)}</strong>
+        <strong>{Number(gameProfile?.balances?.INGAME || 0).toFixed(2)}</strong>
       </div>
       {Legion}
     </div>

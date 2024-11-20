@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
-import styles from "./character-stats.module.css";
-import { useAppSelector } from "../../modules/redux/hook";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../modules/redux/hook";
 import Popup from "../popup";
+import styles from "./character-stats.module.css";
 
 const CharacterStats = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const CharacterStats = () => {
       stats: [
         {
           icon: null,
-          text: `House: ${gameProfile!.houseData.name}`,
+          text: `House: ${gameProfile?.houseData.name}`,
           style: {
             justifyContent: "space-between",
           },
@@ -45,7 +45,7 @@ const CharacterStats = () => {
         },
         {
           icon: "./assets/icons/attack.svg",
-          text: `Attack ${hero!.attack.point}`,
+          text: `Attack ${hero?.attack.point}`,
           buffer: 60,
         },
         {
@@ -54,12 +54,12 @@ const CharacterStats = () => {
         },
         {
           icon: "./assets/icons/hp.svg",
-          text: `HP: ${hero!.hp.point}`,
+          text: `HP: ${hero?.hp.point}`,
           buffer: 300,
         },
         {
           icon: "./assets/icons/fatal-blow.svg",
-          text: gameProfile!.skillData.name,
+          text: gameProfile?.skillData.name,
           style: {
             justifyContent: "space-between",
           },

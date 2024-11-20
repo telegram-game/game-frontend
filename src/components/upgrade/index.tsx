@@ -32,22 +32,22 @@ const UpgradeComponent = (props: UpgradeComponentProps) => {
             </p>
             <div className={styles.popupContainer}>
               <Item
-                attributeType={itemUpgrade!.attriuteType}
+                attributeType={itemUpgrade?.attriuteType}
                 data={{
-                  ...itemUpgrade!.attribute,
-                  level: itemUpgrade!.attribute.level + 1,
+                  ...itemUpgrade?.attribute,
+                  level: itemUpgrade?.attribute.level + 1,
                 }}
               />
               <Item
-                attributeType={itemUpgrade!.attriuteType}
-                data={itemUpgrade!.attribute}
+                attributeType={itemUpgrade?.attriuteType}
+                data={itemUpgrade?.attribute}
               />
             </div>
           </>
         ) : null}
       </Popup>
       <div className={styles.upgradeContainer}>
-        {Object.entries(gameProfile!.attributes).map(([key, value]) => (
+        {Object.entries(gameProfile?.attributes || {}).map(([key, value]) => (
           <Item
             attributeType={key as AttributeType}
             data={value}
