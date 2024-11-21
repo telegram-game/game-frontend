@@ -7,7 +7,11 @@ export interface AppInformation extends ConfigurationData {
   version: string;
 }
 
-export type AttributeType = "POCKET" | "SALARY" | "HONOR";
+export type AttributeType =
+  | "POCKET"
+  | "SALARY"
+  | "HONOR"
+  | "GAME_PROFILE_LEVEL";
 export interface Attribute {
   level: number;
   cost: number;

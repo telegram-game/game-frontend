@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../modules/redux/hook";
 import styles from "./character-stats.module.css";
+import { images } from "../../constants";
 
 const CharacterStats = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const CharacterStats = () => {
               onClick={() => navigate("/house")}
               className={styles.actionButton}
             >
-              <img src="./assets/icons/rotate.svg" alt="Rotate" />
+              <img src={images.rotate} alt="Rotate" />
             </button>
           ),
         },
@@ -34,7 +35,7 @@ const CharacterStats = () => {
           text: "Level: 23",
           hint: (
             <div className={styles.statusIcon}>
-              <img src="./assets/icons/info.svg" alt="Info" />
+              <img src={images.info} alt="Info" />
             </div>
           ),
           style: {
@@ -43,21 +44,21 @@ const CharacterStats = () => {
           action: null,
         },
         {
-          icon: "./assets/icons/attack.svg",
+          icon: images.attack,
           text: `Attack ${hero?.attack.point}`,
           buffer: 60,
         },
         {
-          icon: "./assets/icons/luck.svg",
+          icon: images.luck,
           text: `Luck: ${gameProfile?.houseData.attributes.luckLevel}`,
         },
         {
-          icon: "./assets/icons/hp.svg",
+          icon: images.hp,
           text: `HP: ${hero?.hp.point}`,
           buffer: 300,
         },
         {
-          icon: "./assets/icons/fatal-blow.svg",
+          icon: images.faltalBlow,
           text: gameProfile?.skillData.name,
           style: {
             justifyContent: "space-between",
@@ -69,12 +70,12 @@ const CharacterStats = () => {
             >
               <img
                 className="skillIcon"
-                src="./assets/icons/fatal-blow-skill.svg"
+                src={images?.fatalBlowSkill}
                 alt="Fatal blow Skill"
               />
               <img
                 className={styles.rotateIcon}
-                src="./assets/icons/rotate.svg"
+                src={images?.rotate}
                 alt="Rotate"
               />
             </button>

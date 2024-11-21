@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useAppSelector } from "../modules/redux/hook";
 import styles from "./stats.module.css";
+import { images } from "../constants";
 
 const Stats = () => {
   const { me } = useAppSelector(({ app }) => app);
@@ -31,7 +32,7 @@ const Stats = () => {
     <div className={styles.statsContainer}>
       <div className={styles.statsToken}>
         <img
-          src="https://staggering.tonkombat.com/assets/TOKIcon-m0UJTJMj.webp"
+          src={images.token}
           alt="tokIcon"
           className={styles.tokenIcon}
         />

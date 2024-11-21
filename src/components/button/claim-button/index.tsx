@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../modules/redux/hook";
 import { requestClaimToken } from "../../../modules/redux/slices/app.slice";
 import styles from "./claim-button.module.css";
+import { images } from "../../../constants";
 
 type ClaimButtonComponentProps = {
   onClaim?: (tokenValue: number) => void;
@@ -56,17 +57,17 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
   }, [appInformation, me]);
 
   const handleClaimClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     const lastClaim = new Date(me?.lastClaimedAt?.INGAME || 0);
     const now = new Date();
     const nextClaim = new Date(
-      lastClaim.getTime() + gapTimePerSeconds! * 1000,
+      lastClaim.getTime() + gapTimePerSeconds! * 1000
     ).getTime();
 
     if (nextClaim > now.getTime()) {
       console.error(
-        `Please claim after ${new Date(nextClaim).toLocaleString()} seconds`,
+        `Please claim after ${new Date(nextClaim).toLocaleString()} seconds`
       );
       e.preventDefault();
       return;
@@ -75,7 +76,7 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
     dispatch(
       requestClaimToken({
         token: "INGAME",
-      }),
+      })
     );
 
     if (onClaim) onClaim(tokenValue);
@@ -85,11 +86,7 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
     <div className={styles.claimContainer}>
       <div className={styles.claimButton}>
         <div className={styles.tokenInfo}>
-          <img
-            src='https://staggering.tonkombat.com/assets/TOKIcon-m0UJTJMj.webp'
-            alt='Token Icon'
-            className={styles.icon}
-          />
+          <img src={images.token} alt="Token Icon" className={styles.icon} />
           <div>
             <span className={styles.tokenValue}>{tokenValue?.toFixed(5)}</span>
             <span className={styles.tokenRate}>

@@ -1,3 +1,4 @@
+import { images } from "../../constants";
 import { useAppSelector } from "../../modules/redux/hook";
 import styles from "./balance.module.css";
 
@@ -7,13 +8,9 @@ const BalanceComponent = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <img
-          src="https://staggering.tonkombat.com/assets/TOKIcon-m0UJTJMj.webp"
-          alt="Token Icon"
-          className={styles.token}
-        />
+        <img src={images.token} alt="Token Icon" className={styles.token} />
         <span className={styles.balanceText}>
-          Balance: {me?.balances?.INGAME || 0}
+          Balance: {(me?.balances?.INGAME || 0).toFixed(2)}
         </span>
       </div>
     </div>

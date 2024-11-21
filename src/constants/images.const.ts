@@ -1,0 +1,15 @@
+export const images = {
+  token: "https://staggering.tonkombat.com/assets/TOKIcon-m0UJTJMj.webp",
+  rotate: "./assets/icons/rotate.svg",
+  info: "./assets/icons/info.svg",
+  fatalBlowSkill: "./assets/icons/fatal-blow-skill.svg",
+  hp: "./assets/icons/hp.svg",
+  earn: "./assets/icons/earn.svg",
+  upgrade: "./assets/icons/upgrade.svg",
+  kombat: "./assets/icons/kombat.svg",
+  friend: "./assets/icons/friend.svg",
+  airdrop: "./assets/icons/airdrop.svg",
+  attack: "./assets/icons/attack.svg",
+  luck: "./assets/icons/luck.svg",
+  faltalBlow: "./assets/icons/fatal-blow.svg",
+};

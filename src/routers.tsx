@@ -1,15 +1,16 @@
 import { RouteObject } from "react-router-dom";
+import { images } from "./constants";
 import AirdropPage from "./pages/airdrop";
 import EarnPage from "./pages/earn";
 import NotFoundPage from "./pages/errors/404";
 import FightPage from "./pages/fight";
 import FriendPage from "./pages/friend";
 import HomePage from "./pages/home/index";
+import HousePage from "./pages/house";
 import InventoryPage from "./pages/inventory";
 import KombatPage from "./pages/kombat";
 import ShopPage from "./pages/shop";
 import UpgradePage from "./pages/upgrade";
-import HousePage from "./pages/house";
 
 export const routes: Array<
   RouteObject & { name: string; isNav: boolean; icon?: string }
@@ -24,21 +25,21 @@ export const routes: Array<
     path: "/earn",
     name: "earn",
     element: <EarnPage />,
-    icon: "./assets/icons/earn.svg",
+    icon: images.earn,
     isNav: true,
   },
   {
     path: "/upgrade",
     name: "upgrade",
     element: <UpgradePage />,
-    icon: "./assets/icons/upgrade.svg",
+    icon: images.upgrade,
     isNav: true,
   },
   {
     path: "/kombat",
     name: "kombat",
     element: <KombatPage />,
-    icon: "./assets/icons/kombat.svg",
+    icon: images.kombat,
     isNav: true,
   },
   {
@@ -51,14 +52,14 @@ export const routes: Array<
     path: "/friend",
     name: "Friend",
     element: <FriendPage />,
-    icon: "./assets/icons/friend.svg",
+    icon: images.friend,
     isNav: true,
   },
   {
     path: "/airdrop",
     name: "airdrop",
     element: <AirdropPage />,
-    icon: "./assets/icons/airdrop.svg",
+    icon: images.airdrop,
     isNav: true,
   },
   {

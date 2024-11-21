@@ -2,9 +2,10 @@ import { useMemo } from "react";
 import Character from "../../components/character/character";
 import Progress from "../../components/progress";
 import Tab from "../../components/tab";
+import { images } from "../../constants";
+import { Hero } from "../../interfaces";
 import { useAppSelector } from "../../modules/redux/hook";
 import styles from "./fight.module.css";
-import { Hero } from "../../interfaces";
 const FightPage = () => {
   const { matchResult } = useAppSelector(({ app }) => app);
   const tabs = [
@@ -69,7 +70,7 @@ const FightPage = () => {
       <div className={`${styles.gridContainer} ${styles.match}`}>
         <div className={`${styles.contentLeft}`}>
           <button type="button" className={styles.button}>
-            <img src="./assets/icons/info.svg" alt="arrow" />
+            <img src={images.info} alt="arrow" />
           </button>
         </div>
         <div className={`${styles.contentRight}`}>
@@ -112,11 +113,7 @@ const FightPage = () => {
               <Progress total={10} value={10} />
             </div>
           </div>
-          <img
-            className={styles.skillImage}
-            src="./assets/icons/hp.svg"
-            alt="skill"
-          />
+          <img className={styles.skillImage} src={images.hp} alt="skill" />
           <div className={`${styles.skill} ${styles.enemySkill}`}>
             <div className={styles.skillInfo}>
               <div>1252.63</div>
@@ -137,11 +134,7 @@ const FightPage = () => {
               <Progress total={1000} value={1000} />
             </div>
           </div>
-          <img
-            className={styles.skillImage}
-            src="./assets/icons/hp.svg"
-            alt="skill"
-          />
+          <img className={styles.skillImage} src={images.hp} alt="skill" />
           <div className={`${styles.skill} ${styles.enemySkill}`}>
             <div className={styles.skillInfo}>
               <div>1252.63</div>
