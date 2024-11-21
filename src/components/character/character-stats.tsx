@@ -101,7 +101,7 @@ const CharacterStats = () => {
         ))}
       </div>
     );
-  }, [hero]);
+  }, [hero, gameProfile, navigate, onHandleChangeSkill]);
 
   return (
     <>

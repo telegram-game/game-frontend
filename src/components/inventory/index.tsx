@@ -3,6 +3,7 @@ import Character from "../character/character";
 import Tab from "../tab";
 import InventoryItem from "./inventory-item";
 import styles from "./inventory.module.css";
+import Footer from "../footer";
 
 type InventoryProps = {
   items?: {
@@ -38,7 +39,7 @@ const Inventory = ({ items }: InventoryProps) => {
           {item1 ? <InventoryItem item={item1} /> : <div></div>}
           <div></div>
           {item2 ? <InventoryItem item={item2} /> : <div></div>}
-        </Fragment>
+        </Fragment>,
       );
     }
     return el;
@@ -66,6 +67,7 @@ const Inventory = ({ items }: InventoryProps) => {
           </div>
         </div>
       </Popup> */}
+      <Footer />
     </>
   );
 };
