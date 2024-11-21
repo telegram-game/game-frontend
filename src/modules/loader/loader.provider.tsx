@@ -9,26 +9,26 @@ import {
 
 export type LoaderContextProps = {
   isLoading: boolean;
-  loaderText: string;
-  start: (loaderText?: string) => void;
+  loaderStyle: Record<string, string>;
+  start: (loaderStyle?: Record<string, string>) => void;
   stop: () => void;
 };
 
 export const LoaderContext = createContext<LoaderContextProps>(
-  {} as LoaderContextProps
+  {} as LoaderContextProps,
 );
 
 export const LoaderProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [loaderText, setLoaderText] = useState("");
+  const [loaderStyle, setLoaderText] = useState<Record<string, string>>({});
   const [loaderStack, setLoaderStack] = useState<Array<boolean>>([]);
 
   const start = useCallback(
-    (loaderText?: string) => {
+    (loaderStyle?: Record<string, string>) => {
       setLoaderStack([...loaderStack, true]);
-      setLoaderText(loaderText || "");
+      setLoaderText(loaderStyle || ({} as any));
     },
-    [loaderStack]
+    [loaderStack],
   );
 
   const stop = useCallback(() => {
@@ -49,7 +49,7 @@ export const LoaderProvider = ({ children }: { children: ReactNode }) => {
         isLoading,
         start,
         stop,
-        loaderText,
+        loaderStyle,
       }}
     >
       {children}
@@ -62,7 +62,7 @@ export const useLoader = () => {
 
   if (!loaderContext) {
     throw new Error(
-      "Please use useLoader inside the context of LoaderProvider"
+      "Please use useLoader inside the context of LoaderProvider",
     );
   }
 

@@ -29,14 +29,16 @@ function App() {
       throw new Error("Telegram user data not found");
     }
 
-    loader.start();
+    loader.start({
+      backgroundColor: "#1d2b4e",
+    });
     Promise.all([
       dispatch(requestAppInformation()).unwrap(),
       dispatch(
         requestSignIn({
           provider: "TELEGRAM",
           code: String(data["#tgWebAppData"]),
-        })
+        }),
       ).unwrap(),
     ]).then(() => {
       loader.stop();
