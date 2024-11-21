@@ -12,19 +12,14 @@ type ItemProps = {
 const Item = ({ data, attributeType, onClick }: ItemProps) => {
   const item = useMemo(() => {
     if (!ItemAttributes[attributeType]) return;
+    const { img, title } = ItemAttributes[attributeType]!;
 
     return (
       <div className={styles.upgradeItem} onClick={onClick}>
         <button className={styles.upgradeButton}>
-          <img
-            src={ItemAttributes[attributeType].img}
-            alt="Wallet"
-            className={styles.upgradeImage}
-          />
+          <img src={img} alt="Wallet" className={styles.upgradeImage} />
           <div className={styles.upgradeInfo}>
-            <span className={styles.upgradeTitle}>
-              {ItemAttributes[attributeType].title}
-            </span>
+            <span className={styles.upgradeTitle}>{title}</span>
             <p className={styles.upgradeDescription}>{data.description}</p>
             <div className={styles.costInfo}>
               <img
