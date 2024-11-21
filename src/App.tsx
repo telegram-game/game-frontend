@@ -22,48 +22,25 @@ function App() {
     const data: Record<TelegramKeyPair, any> = {} as any;
 
     telegramInfo.forEach((value, key) => {
-      if (key === "tgWebAppThemeParams")
-        data[key as TelegramKeyPair] = JSON.parse(decodeURIComponent(value));
-      else if (key === "#tgWebAppData") {
-        new URLSearchParams(decodeURIComponent(value)).forEach(
-          (value, childKey) => {
-            if (childKey === "user")
-              value = JSON.parse(decodeURIComponent(value));
-            data[key as TelegramKeyPair] = {
-              ...(data[key as TelegramKeyPair] ?? {}),
-              [childKey]: value,
-            };
-          },
-        );
-      } else data[key as TelegramKeyPair] = decodeURIComponent(value);
+      data[key as TelegramKeyPair] = value;
     });
 
-    if (!app.appInformation) {
-      loader.start();
-      dispatch(requestAppInformation())
-        .unwrap()
-        .finally(() => {
-          loader.stop();
-        });
+    if (!data || !data["#tgWebAppData"]) {
+      throw new Error("Telegram user data not found");
     }
-    if (!auth.accessToken) {
-      loader.start();
 
-      if (!data || !data["#tgWebAppData"]?.user?.id) {
-        throw new Error("Telegram user data not found");
-      }
+    loader.start();
+    Promise.all([
+      dispatch(requestAppInformation()).unwrap(),
       dispatch(
         requestSignIn({
           provider: "TELEGRAM",
-          code: String(data["#tgWebAppData"].user.id),
-          ...data["#tgWebAppData"],
-        }),
-      )
-        .unwrap()
-        .finally(() => {
-          loader.stop();
-        });
-    }
+          code: String(data["#tgWebAppData"]),
+        })
+      ).unwrap(),
+    ]).then(() => {
+      loader.stop();
+    });
   }, []);
 
   return (
