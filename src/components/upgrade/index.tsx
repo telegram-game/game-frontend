@@ -18,7 +18,9 @@ const UpgradeComponent = (props: UpgradeComponentProps) => {
     if (itemUpgrade) {
       openPopup(
         <div className={styles.popup}>
-          <button onClick={closePopup}>X</button>
+          <div className={styles.popupClose}>
+            <button onClick={closePopup}>X</button>
+          </div>
           <h1>On upgrade {itemUpgrade!.attriuteType}</h1>
           <p>
             Upgrade to increase passive TOK per hour Income = Salary * Honor

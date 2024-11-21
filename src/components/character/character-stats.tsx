@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { images } from "../../constants";
 import { useAppSelector } from "../../modules/redux/hook";
 import styles from "./character-stats.module.css";
-import { images } from "../../constants";
 
 const CharacterStats = () => {
   const navigate = useNavigate();
