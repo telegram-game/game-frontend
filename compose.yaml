@@ -7,4 +7,4 @@ services:
     environment:
       REACT_APP_API_ENDPOINT: https://game-backend-n47q.onrender.com
     ports:
-      - 9000:80
+      - 8000:80

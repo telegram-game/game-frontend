@@ -167,6 +167,20 @@ export const requestGetMe = createAsyncThunk(
     })
 );
 
+export const requestUpgradeAttribute = createAsyncThunk(
+  "app/upgradeAttribute",
+  async (attribute: string, { getState, dispatch }) => {
+    const { app } = getState() as { app: AppState };
+    const result = await Post(API_ENDPOINTS.GAME.UPGRADE_ATTRIBUTE, {
+      gameProfileId: app.gameProfile?.id,
+      attribute
+    });
+    dispatch(requestGameProfile());
+    dispatch(requestGetMe());
+    return result;
+  }
+)
+
 const appSlice = createSlice({
   name: "app",
   initialState,
@@ -203,6 +217,7 @@ const appSlice = createSlice({
       };
     });
     builder.addCase(requestChangeHouse.fulfilled, (state) => state);
+    builder.addCase(requestUpgradeAttribute.fulfilled, (state) => state);
     builder.addCase(requestFight.fulfilled, (state, action) => {
       return {
         ...state,

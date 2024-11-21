@@ -6,35 +6,3 @@
   max-width: 343px;
   margin: 0 auto;
 }
-
-.popup {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 1rem 1rem 0 0;
-}
-
-.popupClose {
-  display: flex;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.popupClose {
-  margin: 0.75rem;
-}
-
-.popupContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  max-width: 343px;
-  margin: 0 auto;
-  width: 100%;
-}

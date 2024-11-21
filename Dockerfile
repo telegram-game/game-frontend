@@ -60,7 +60,8 @@ ENV REACT_APP_API_ENDPOINT $REACT_APP_API_ENDPOINT
 EXPOSE 80
 
 # Use a custom NGINX config to handle environment variables
-# COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+# RUN chmod +x /etc/nginx/nginx.conf
 
 # Step 3: Run Phase (NGINX will serve the app)
 CMD ["nginx", "-g", "daemon off;"]
