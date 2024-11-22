@@ -10,6 +10,7 @@ import HousePage from "./pages/house";
 import InventoryPage from "./pages/inventory";
 import KombatPage from "./pages/kombat";
 import ShopPage from "./pages/shop";
+import TierPage from "./pages/tier";
 import UpgradePage from "./pages/upgrade";
 
 export const routes: Array<
@@ -85,5 +86,11 @@ export const routes: Array<
     name: "House",
     isNav: false,
     element: <HousePage />,
+  },
+  {
+    path: "tier",
+    name: "Tier",
+    isNav: false,
+    element: <TierPage />,
   },
 ];
