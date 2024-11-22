@@ -96,6 +96,7 @@ export const requestChangeHouse = createAsyncThunk(
       gameProfileId: app.gameProfile?.id,
     });
     dispatch(requestGameProfile());
+    dispatch(requestGetHero());
   }
 );
 
