@@ -6,7 +6,7 @@ const buildFetchRequest = <T>({
   request,
   refreshToken,
   handleError,
-  responseOptions
+  responseOptions,
 }: FetchRequestOptions<T>) => {
   return request()
     .catch((error: FetchRequestError) => {
@@ -16,18 +16,19 @@ const buildFetchRequest = <T>({
         error.response.status === HttpStatusCode.Unauthorized &&
         refreshToken
       ) {
-        return refreshToken().then(() => request())
+        return refreshToken().then(() => request());
+      } else if (error.response) {
+        return error.response as T;
+      } else if (axios.isCancel(error)) {
+        return Promise.reject(error);
       }
-      if (axios.isCancel(error)) {
-        return Promise.reject(error)
-      }
-      return error
+      return error;
     })
     .then((res: any) => handleFetchResponse({ ...res, ...responseOptions }))
     .catch((error: any) => {
-      handleError(error)
-      throw error
-    })
-}
+      handleError(error);
+      throw error;
+    });
+};
 
-export default buildFetchRequest
+export default buildFetchRequest;

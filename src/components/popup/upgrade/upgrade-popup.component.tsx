@@ -1,10 +1,10 @@
-import { AttributeType, Attribute } from "../../../interfaces";
+import { Attribute, AttributeType } from "../../../interfaces";
 import Item from "../../item";
 import styles from "./upgrade-popup.module.css";
 
 interface UpgradePoupComponentProps {
   itemUpgrade: {
-    attriuteType: AttributeType;
+    attributeType: AttributeType;
     attribute: Attribute;
   };
   closePopup: () => void;
@@ -21,7 +21,7 @@ const UpgradePoupComponent = ({
         <button onClick={closePopup}>X</button>
       </div>
       <div className={styles.popupHeader}>
-        <h1>{itemUpgrade!.attriuteType}</h1>
+        <h1>{itemUpgrade!.attributeType}</h1>
         <p>Upgrade to increase passive TOK per hour Income = Salary * Honor</p>
       </div>
       <div className={styles.popupContainer}>
@@ -29,7 +29,7 @@ const UpgradePoupComponent = ({
           style={{
             justifyContent: "start",
           }}
-          attributeType={itemUpgrade!.attriuteType}
+          attributeType={itemUpgrade!.attributeType}
           data={{
             ...itemUpgrade!.attribute,
             level: itemUpgrade!.attribute.level + 1,
@@ -39,7 +39,7 @@ const UpgradePoupComponent = ({
           style={{
             justifyContent: "start",
           }}
-          attributeType={itemUpgrade!.attriuteType}
+          attributeType={itemUpgrade!.attributeType}
           data={itemUpgrade!.attribute}
         />
         <div className={styles.upgradeButton}>

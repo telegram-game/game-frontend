@@ -170,7 +170,7 @@ export const requestGetMe = createAsyncThunk(
 
 export const requestUpgradeAttribute = createAsyncThunk(
   "app/upgradeAttribute",
-  async (attribute: string, { getState, dispatch }) => {
+  async (attribute: AttributeType, { getState, dispatch }) => {
     const { app } = getState() as { app: AppState };
     const result = await Post(API_ENDPOINTS.GAME.UPGRADE_ATTRIBUTE, {
       gameProfileId: app.gameProfile?.id,

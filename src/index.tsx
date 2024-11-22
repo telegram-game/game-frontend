@@ -7,6 +7,8 @@ import { LoaderProvider } from "./modules/loader/loader.provider";
 import { PopupProvider } from "./modules/popup/popup.provider";
 import { ReduxProviders } from "./modules/redux/provider";
 import reportWebVitals from "./reportWebVitals";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,6 +19,12 @@ root.render(
     <LoaderProvider>
       <PopupProvider>
         <ReduxProviders>
+          <ToastContainer
+            limit={3}
+            autoClose={2000}
+            theme={"dark"}
+            position={"top-left"}
+          />
           <PopupComponent />
           <Loader />
           <App />

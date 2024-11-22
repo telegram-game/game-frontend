@@ -1,0 +1,6 @@
+export enum Attributes {
+  GAME_PROFILE_LEVEL = "GAME_PROFILE_LEVEL",
+  SALARY = "SALARY",
+  POCKET = "POCKET",
+  HONOR = "HONOR",
+}

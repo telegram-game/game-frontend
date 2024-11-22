@@ -1,6 +1,7 @@
 import { AxiosInstance, AxiosResponse } from "axios";
 import { redirect } from "react-router-dom";
 
+import { toast } from "react-toastify";
 import { API_ENDPOINTS } from "../../constants";
 import {
   persistAccessToken,
@@ -54,18 +55,14 @@ const fetchRequest = async <T>(
         console.error("fetch error", e);
         throw e;
       }
-
-      // TODO implement error handling
-      console.error({
-        options,
-        e,
-      });
+      toast(e.message);
     },
     responseOptions: {
       standardizeResponse: (data) => {
         return {
           data: data.data,
           errorMessage: data?.data?.detail,
+          errorCode: data?.data?.errorCode,
         };
       },
       // forbiddenErrorMessage: "forbiddenErrorMessage",

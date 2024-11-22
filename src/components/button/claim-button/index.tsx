@@ -86,7 +86,7 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
     <div className={styles.claimContainer}>
       <div className={styles.claimButton}>
         <div className={styles.tokenInfo}>
-          <img src={images.token} alt="Token Icon" className={styles.icon} />
+          <img src={images.coin.INGAME} alt="Token Icon" className={styles.icon} />
           <div>
             <span className={styles.tokenValue}>{tokenValue?.toFixed(5)}</span>
             <span className={styles.tokenRate}>

@@ -18,14 +18,14 @@ const Item = ({ data, attributeType, onClick, style }: ItemProps) => {
     return (
       <div className={`${styles.upgradeItem}`} onClick={onClick}>
         <button className={styles.upgradeButton} style={style}>
-          <img src={img} alt='Wallet' className={styles.upgradeImage} />
+          <img src={img} alt="Wallet" className={styles.upgradeImage} />
           <div className={styles.upgradeInfo}>
             <span className={styles.upgradeTitle}>{title}</span>
             <p className={styles.upgradeDescription}>{data.description}</p>
             <div className={styles.costInfo}>
               <img
-                src={images.token}
-                alt='Token Icon'
+                src={images.coin.INGAME}
+                alt="Token Icon"
                 className={styles.tokenIcon}
               />
               <span className={styles.cost}>{data.cost}</span>

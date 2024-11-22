@@ -1,3 +1,4 @@
+import { Attributes } from "../enums";
 import { ConfigurationData, GameHouse } from "./configuration-data.interface";
 
 export interface AppInformation extends ConfigurationData {
@@ -7,15 +8,13 @@ export interface AppInformation extends ConfigurationData {
   version: string;
 }
 
-export type AttributeType =
-  | "POCKET"
-  | "SALARY"
-  | "HONOR"
-  | "GAME_PROFILE_LEVEL";
+export type AttributeType = keyof typeof Attributes;
+
 export interface Attribute {
   level: number;
   cost: number;
   description: number | string;
+  totalCost?: number;
 }
 
 export type HeroAttribute =

@@ -8,7 +8,7 @@ const BalanceComponent = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <img src={images.token} alt="Token Icon" className={styles.token} />
+        <img src={images.coin.INGAME} alt="Token Icon" className={styles.token} />
         <span className={styles.balanceText}>
           Balance: {(me?.balances?.INGAME || 0).toFixed(2)}
         </span>

@@ -1,0 +1,118 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: space-between;
+  height: calc(100vh - 40px);
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tierImage img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.tierName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.tierDescription {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.levelChart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.levelChart button {
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+
+.nextTier {
+  border: 1px solid #2695e780;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.nextTier p {
+  padding: 0.75rem;
+  border: 1px solid #2695e780;
+  border-radius: 1rem;
+}
+
+.gameStar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gameStarIcon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.gameStar p {
+  display: flex;
+}
+
+.nextTierNeeded {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #2695e780;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+
+.action {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.action button {
+  background-color: transparent;
+  border: 1px solid #2695e780;
+  display: flex;
+  flex-direction: row;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 0.75rem;
+  width: 100%;
+}
+
+.action button:first-child {
+  background: linear-gradient(180deg, #41a5ef, #2695e7, #2695e7 108.04%);
+}

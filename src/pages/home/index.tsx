@@ -11,33 +11,29 @@ const HomePage = () => {
   const [isShowWarriorPack, setIsShowWarriorPack] = useState(false);
   return (
     <>
-      <Stats />
-      <div className={styles.absolute}>
-        <img
-          onClick={() => navigate("/shop")}
-          src="https://staggering.tonkombat.com/assets/iap-shop-DOl3vZak.webp"
-          alt="Shop"
-          className={styles.icon}
-        />
-        <img
-          onClick={() => setIsShowWarriorPack(true)}
-          src="https://staggering.tonkombat.com/assets/warrior-pack-CiAetCKO.webp"
-          alt="Warrior's Pack"
-          className={styles.icon}
-        />
+      <div className={styles.container}>
+        <Stats />
+        <div className={styles.absolute}>
+          <img
+            onClick={() => navigate("/shop")}
+            src="https://staggering.tonkombat.com/assets/iap-shop-DOl3vZak.webp"
+            alt="Shop"
+            className={styles.icon}
+          />
+          <img
+            onClick={() => setIsShowWarriorPack(true)}
+            src="https://staggering.tonkombat.com/assets/warrior-pack-CiAetCKO.webp"
+            alt="Warrior's Pack"
+            className={styles.icon}
+          />
+        </div>
+        <div className={styles.characterContainer}>
+          <Character />
+        </div>
+        {/* <button className={styles.checkNewsButton}>Check News</button> */}
+        <ClaimButtonComponent />
+        <Footer />
       </div>
-      <div className={styles.characterContainer}>
-        <Character />
-      </div>
-      {/* <button className={styles.checkNewsButton}>Check News</button> */}
-      <ClaimButtonComponent />
-      <Footer />
-      {/* <Popup
-        isOpen={isShowWarriorPack}
-        onClose={() => setIsShowWarriorPack(false)}
-      >
-        <h1>Warrior Pack</h1>
-      </Popup> */}
     </>
   );
 };

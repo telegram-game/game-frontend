@@ -1,8 +1,12 @@
-import { HandleFetchResponseOptions, HttpStatusCode } from "./type";
+import {
+  HandleFetchResponseOptions,
+  HttpStatusCode,
+  StandardizeResponseData,
+} from "./type";
 
 // const HttpSuccessCodeRegex = /^(200|201|202)$/g;
 
-const handleFetchResponse = <T>({
+const handleFetchResponse = <T extends StandardizeResponseData>({
   status,
   data,
   standardizeResponse,
@@ -21,7 +25,7 @@ const handleFetchResponse = <T>({
   // if (!HttpSuccessCodeRegex.test(String(status))) {
   if (status >= HttpStatusCode.BadRequest) {
     return Promise.reject(
-      new Error(fetchErrorMessage ?? "Something went wrong!")
+      new Error(data.errorCode || fetchErrorMessage || "Something went wrong!")
     );
   }
 
@@ -39,7 +43,7 @@ const handleFetchResponse = <T>({
     return Promise.reject(new Error(validResponse.errorMessage));
   }
 
-  return Promise.resolve(validResponse?.data ?? data);
+  return Promise.resolve(validResponse?.data || data);
 };
 
 export default handleFetchResponse;

@@ -16,7 +16,7 @@ const UpgradeComponent = (props: UpgradeComponentProps) => {
   const { openPopup, isOpen, closePopup } = usePopup();
 
   const [itemUpgrade, setItemUpgrade] = useState<{
-    attriuteType: AttributeType;
+    attributeType: AttributeType;
     attribute: Attribute;
   }>();
 
@@ -28,7 +28,7 @@ const UpgradeComponent = (props: UpgradeComponentProps) => {
           closePopup={closePopup}
           onUpgrade={() => {
             start();
-            dispatch(requestUpgradeAttribute(itemUpgrade.attriuteType))
+            dispatch(requestUpgradeAttribute(itemUpgrade.attributeType))
               .unwrap()
               .then(() => closePopup())
               .finally(() => stop());
@@ -53,7 +53,7 @@ const UpgradeComponent = (props: UpgradeComponentProps) => {
               onClick={() =>
                 setItemUpgrade({
                   attribute: value,
-                  attriuteType: key as AttributeType,
+                  attributeType: key as AttributeType,
                 })
               }
             />

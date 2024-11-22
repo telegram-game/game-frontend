@@ -37,6 +37,7 @@ export type FetchResponse<T> = AxiosResponse<T>;
 export type StandardizeResponseData = {
   data: any;
   errorMessage: string;
+  errorCode: string;
 };
 
 type BaseHandleFetchResponseOptions<T> = {
