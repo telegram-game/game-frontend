@@ -12,4 +12,5 @@ export const images = {
   attack: "/assets/icons/attack.svg",
   luck: "/assets/icons/luck.svg",
   faltalBlow: "/assets/icons/fatal-blow.svg",
+  changeSkill: "https://staggering.tonkombat.com/assets/pet_moonbix-CQQnvteN.webp",
 };

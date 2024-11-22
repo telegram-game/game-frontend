@@ -174,13 +174,28 @@ export const requestUpgradeAttribute = createAsyncThunk(
     const { app } = getState() as { app: AppState };
     const result = await Post(API_ENDPOINTS.GAME.UPGRADE_ATTRIBUTE, {
       gameProfileId: app.gameProfile?.id,
-      attribute
+      attribute,
     });
     dispatch(requestGameProfile());
     dispatch(requestGetMe());
     return result;
   }
-)
+);
+
+export const requestChangeSkill = createAsyncThunk(
+  "app/requestChangeSkill",
+  async (skillCode: string, { getState, dispatch }) => {
+    const { app } = getState() as { app: AppState };
+    await Post(API_ENDPOINTS.GAME.CHANGE_SKILL, {
+      gameProfileId: app.gameProfile?.id,
+      heroId: app.hero?.id,
+      skill: skillCode,
+    });
+
+    dispatch(requestGameProfile());
+    dispatch(requestGetMe());
+  }
+);
 
 const appSlice = createSlice({
   name: "app",
@@ -219,6 +234,7 @@ const appSlice = createSlice({
     });
     builder.addCase(requestChangeHouse.fulfilled, (state) => state);
     builder.addCase(requestUpgradeAttribute.fulfilled, (state) => state);
+    builder.addCase(requestChangeSkill.fulfilled, (state) => state);
     builder.addCase(requestFight.fulfilled, (state, action) => {
       return {
         ...state,

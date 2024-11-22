@@ -1,15 +1,31 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../constants";
-import { useAppSelector } from "../../modules/redux/hook";
+import { useAppDispatch, useAppSelector } from "../../modules/redux/hook";
 import styles from "./character-stats.module.css";
+import { usePopup } from "../../modules/popup/popup.provider";
+import ChangeSkillPopupComponent from "../popup/change-skill/change-skill-popup.component";
+import { requestChangeSkill } from "../../modules/redux/slices/app.slice";
 
 const CharacterStats = () => {
   const navigate = useNavigate();
+  const dispacth = useAppDispatch();
   const { hero, gameProfile } = useAppSelector(({ app }) => app);
-  const [isShowPoupChangeSkill, setIsShowPopupChangeSkill] = useState(false);
+  const { openPopup, isOpen, closePopup } = usePopup();
+
+  const onChangeSkill = (skillCode: string) => {
+    console.log({
+      skillCode,
+    });
+    dispacth(requestChangeSkill(skillCode)).unwrap().then(closePopup);
+  };
   const onHandleChangeSkill = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsShowPopupChangeSkill(true);
+    openPopup(
+      <ChangeSkillPopupComponent
+        onClose={closePopup}
+        onConfirm={onChangeSkill}
+      />
+    );
   };
 
   const statics = useMemo(() => {
@@ -101,17 +117,11 @@ const CharacterStats = () => {
         ))}
       </div>
     );
-  }, [hero, gameProfile, navigate, onHandleChangeSkill]);
+  }, [hero, gameProfile, navigate, isOpen, onHandleChangeSkill]);
 
   return (
     <>
       <div className={styles.cardContainer}>{statics}</div>
-      {/* <Popup
-        isOpen={isShowPoupChangeSkill}
-        onClose={() => setIsShowPopupChangeSkill(false)}
-      >
-        Change skill set
-      </Popup> */}
     </>
   );
 };

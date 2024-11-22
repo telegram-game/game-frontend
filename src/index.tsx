@@ -16,8 +16,8 @@ root.render(
   <div className={styles.container}>
     <LoaderProvider>
       <PopupProvider>
-        <PopupComponent />
         <ReduxProviders>
+          <PopupComponent />
           <Loader />
           <App />
         </ReduxProviders>

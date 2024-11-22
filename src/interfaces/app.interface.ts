@@ -15,7 +15,7 @@ export type AttributeType =
 export interface Attribute {
   level: number;
   cost: number;
-  description: number;
+  description: number | string;
 }
 
 export type HeroAttribute =
