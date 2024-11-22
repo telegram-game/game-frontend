@@ -1,7 +1,4 @@
-@import url("../../index.module.css");
-
 .container {
-    gap: 1rem;
     display: flex;
     flex-direction: column;
 

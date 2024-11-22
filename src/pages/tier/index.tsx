@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Footer from "../../components/footer";
 import { images } from "../../constants";
 import { Attributes } from "../../enums";
 import { Attribute } from "../../interfaces";
@@ -81,7 +80,6 @@ const TierPage = () => {
           </div>
         </div>
         <div className={styles.footer}>
-          <Footer />
         </div>
       </div>
     </>

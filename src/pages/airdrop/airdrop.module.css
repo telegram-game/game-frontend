@@ -1,10 +1,6 @@
-@import url("../../index.module.css");
-
 .container {
-    gap: 1rem;
     display: flex;
     flex-direction: column;
-
     min-height: calc(100vh - 110px);
     justify-content: space-between;
 }

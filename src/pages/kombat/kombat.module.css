@@ -4,8 +4,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: auto;
   position: relative;
+  
+  min-height: calc(100vh - 110px);
+  justify-content: space-between;
 }
 .characterContainer {
   height: calc(100vh - 360px);

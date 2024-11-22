@@ -12,6 +12,7 @@ import KombatPage from "./pages/kombat";
 import ShopPage from "./pages/shop";
 import TierPage from "./pages/tier";
 import UpgradePage from "./pages/upgrade";
+import Footer from "./components/footer";
 
 export const routes: Array<
   RouteObject & { name: string; isNav: boolean; icon?: string }
@@ -20,53 +21,93 @@ export const routes: Array<
     path: "/",
     name: "home",
     isNav: false,
-    element: <HomePage />,
+    element: (
+      <>
+        <HomePage />
+        <Footer />
+      </>
+    ),
   },
   {
     path: "/earn",
     name: "earn",
-    element: <EarnPage />,
+    element: (
+      <>
+        <EarnPage />
+        <Footer />
+      </>
+    ),
     icon: images.earn,
     isNav: true,
   },
   {
     path: "/upgrade",
     name: "upgrade",
-    element: <UpgradePage />,
+    element: (
+      <>
+        <UpgradePage />
+        <Footer />
+      </>
+    ),
     icon: images.upgrade,
     isNav: true,
   },
   {
     path: "/kombat",
     name: "kombat",
-    element: <KombatPage />,
+    element: (
+      <>
+        <KombatPage />
+        <Footer />
+      </>
+    ),
     icon: images.kombat,
     isNav: true,
   },
   {
     path: "/kombat/inventory",
     name: "Inventory",
-    element: <InventoryPage />,
+    element: (
+      <>
+        <InventoryPage />
+        <Footer />
+      </>
+    ),
     isNav: false,
   },
   {
     path: "/friend",
     name: "Friend",
-    element: <FriendPage />,
+    element: (
+      <>
+        <FriendPage />
+        <Footer />
+      </>
+    ),
     icon: images.friend,
     isNav: true,
   },
   {
     path: "/airdrop",
     name: "airdrop",
-    element: <AirdropPage />,
+    element: (
+      <>
+        <AirdropPage />
+        <Footer />
+      </>
+    ),
     icon: images.airdrop,
     isNav: true,
   },
   {
     path: "/fight",
     name: "Fight",
-    element: <FightPage />,
+    element: (
+      <>
+        <FightPage />
+        <Footer />
+      </>
+    ),
     isNav: false,
   },
   {
@@ -79,18 +120,33 @@ export const routes: Array<
     path: "shop",
     name: "Shop",
     isNav: false,
-    element: <ShopPage />,
+    element: (
+      <>
+        <ShopPage />
+        <Footer />
+      </>
+    ),
   },
   {
     path: "house",
     name: "House",
     isNav: false,
-    element: <HousePage />,
+    element: (
+      <>
+        <HousePage />
+        <Footer />
+      </>
+    ),
   },
   {
     path: "tier",
     name: "Tier",
     isNav: false,
-    element: <TierPage />,
+    element: (
+      <>
+        <TierPage />
+        <Footer />
+      </>
+    ),
   },
 ];

@@ -1,16 +1,15 @@
 import BalanceComponent from "../../components/balance";
 import BonusComponent from "../../components/bonus";
-import Footer from "../../components/footer";
 import Missions from "../../components/mission";
+import stles from "./earn.module.css";
 
 const EarnPage = () => {
   return (
-    <>
+    <div className={stles.container}>
       <BalanceComponent />
       <BonusComponent />
       <Missions />
-      <Footer />
-    </>
+    </div>
   );
 };
 export default EarnPage;

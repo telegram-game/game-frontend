@@ -1,10 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ClaimButtonComponent from "../../components/button/claim-button";
 import Character from "../../components/character/character";
-import Footer from "../../components/footer";
 import Stats from "../../components/stats";
 import styles from "./home.module.css";
-import { useState } from "react";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -32,7 +31,6 @@ const HomePage = () => {
         </div>
         {/* <button className={styles.checkNewsButton}>Check News</button> */}
         <ClaimButtonComponent />
-        <Footer />
       </div>
     </>
   );

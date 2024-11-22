@@ -1,11 +1,10 @@
-import Footer from "../../components/footer";
+import styles from "./friend.module.css";
 
 const FriendPage = () => {
   return (
-    <>
+    <div className={styles.container}>
       <h1>friendly page</h1>
-      <Footer />
-    </>
+    </div>
   );
 };
 export default FriendPage;

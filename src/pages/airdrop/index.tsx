@@ -1,11 +1,9 @@
-import Footer from "../../components/footer";
-
+import styles from "./airdrop.module.css";
 const AirdropPage = () => {
   return (
-    <>
+    <div className={styles.container}>
       <h1>airdrop page</h1>
-      <Footer />
-    </>
+    </div>
   );
 };
 export default AirdropPage;

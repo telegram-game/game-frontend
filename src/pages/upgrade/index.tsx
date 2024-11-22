@@ -1,14 +1,12 @@
 import BalanceComponent from "../../components/balance";
-import Footer from "../../components/footer";
 import UpgradeComponent from "../../components/upgrade";
-
+import styles from "./upgrade.module.css";
 const UpgradePage = () => {
   return (
-    <>
+    <div className={styles.container}>
       <BalanceComponent />
       <UpgradeComponent />
-      <Footer />
-    </>
+    </div>
   );
 };
 export default UpgradePage;
