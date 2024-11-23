@@ -82,7 +82,7 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
   const token = useMemo(() => {
     return (
       <div>
-        <span className={styles.tokenValue}>{tokenValue?.toFixed(5)}</span>
+        <span className={styles.tokenValue}>{tokenValue?.toFixed(6)}</span>
         <span className={styles.tokenRate}>
           {(speedPerSecond || 0) * 60 * 60} TOK/hour
         </span>
