@@ -3,7 +3,7 @@ import { usePopup } from "../../modules/popup/popup.provider";
 import styles from "./popup.module.css";
 
 const PopupComponent: React.FC = () => {
-  const { isOpen, popupContent, closePopup } = usePopup();
+  const { isOpen, popupContent } = usePopup();
 
   return (
     <>{isOpen && <div className={styles.container}>{popupContent}</div>}</>

@@ -4,3 +4,8 @@ export enum Attributes {
   POCKET = "POCKET",
   HONOR = "HONOR",
 }
+
+export enum Token {
+  INGAME = 'INGAME',
+  INGAME_2 = 'INGAME_2'
+}

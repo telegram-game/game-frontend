@@ -7,7 +7,7 @@ import styles from "./home.module.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [isShowWarriorPack, setIsShowWarriorPack] = useState(false);
+  const [, setIsShowWarriorPack] = useState(false);
   return (
     <>
       <div className={styles.container}>
@@ -15,13 +15,13 @@ const HomePage = () => {
         <div className={styles.absolute}>
           <img
             onClick={() => navigate("/shop")}
-            src="https://staggering.tonkombat.com/assets/iap-shop-DOl3vZak.webp"
-            alt="Shop"
+            src='https://staggering.tonkombat.com/assets/iap-shop-DOl3vZak.webp'
+            alt='Shop'
             className={styles.icon}
           />
           <img
             onClick={() => setIsShowWarriorPack(true)}
-            src="https://staggering.tonkombat.com/assets/warrior-pack-CiAetCKO.webp"
+            src='https://staggering.tonkombat.com/assets/warrior-pack-CiAetCKO.webp'
             alt="Warrior's Pack"
             className={styles.icon}
           />

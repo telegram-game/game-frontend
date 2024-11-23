@@ -2,7 +2,6 @@ import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
-import Footer from "./components/footer";
 import Loader from "./components/loader";
 import PopupComponent from "./components/popup/popup.component";
 import styles from "./index.module.css";

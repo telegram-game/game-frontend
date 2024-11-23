@@ -29,8 +29,9 @@
   display: flex;
   justify-content: space-between;
   width: calc(100% - 40px);
-  top: calc(100vh - 700px);
+  top: 24%;
   z-index: 1;
+
 }
 
 .icon {

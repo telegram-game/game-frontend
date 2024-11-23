@@ -31,7 +31,7 @@ const TierPage = () => {
         <div className={styles.tier}>
           <div className={styles.content}>
             <div className={styles.tierImage}>
-              <img src={images.tiers.KNIGHT} />
+              <img src={images.tiers.KNIGHT} alt="tier" />
             </div>
             <div className={styles.tierName}>
               <p>{tier?.name}</p>&nbsp;<span>{tier?.tier}</span>

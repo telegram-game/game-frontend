@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Attribute, AttributeType } from "../../interfaces";
-import { useAppDispatch, useAppSelector } from "../../modules/redux/hook";
-import Item from "../item";
-import styles from "./upgrade.module.css";
-import { usePopup } from "../../modules/popup/popup.provider";
-import UpgradePoupComponent from "../popup/upgrade/upgrade-popup.component";
-import { requestUpgradeAttribute } from "../../modules/redux/slices/app.slice";
 import { useLoader } from "../../modules/loader/loader.provider";
+import { usePopup } from "../../modules/popup/popup.provider";
+import { useAppDispatch, useAppSelector } from "../../modules/redux/hook";
+import { requestUpgradeAttribute } from "../../modules/redux/slices/app.slice";
+import Item from "../item";
+import UpgradePoupComponent from "../popup/upgrade/upgrade-popup.component";
+import styles from "./upgrade.module.css";
 
 type UpgradeComponentProps = {};
 const UpgradeComponent = (props: UpgradeComponentProps) => {
@@ -30,6 +30,7 @@ const UpgradeComponent = (props: UpgradeComponentProps) => {
             start();
             dispatch(requestUpgradeAttribute(itemUpgrade.attributeType))
               .unwrap()
+              .catch()
               .then(() => closePopup())
               .finally(() => stop());
           }}

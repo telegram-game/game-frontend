@@ -15,7 +15,10 @@ const FindFriendPopup = ({ onFight, closePopup }: FindFriendPopupProps) => {
     >
       <div className={styles.popupContent}>
         <div className={styles.popupHeader}>
-          <img src='https://staggering.tonkombat.com/assets/friend-match-fist-DY5sEd93.webp' />
+          <img
+            src='https://staggering.tonkombat.com/assets/friend-match-fist-DY5sEd93.webp'
+            alt='Find Friend'
+          />
         </div>
         <div className={styles.popupBody}>
           <p className='popup__text'>

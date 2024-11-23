@@ -11,11 +11,12 @@ const ChangeSkillPopupComponent = ({
   onClose,
   onConfirm,
 }: ChangeSkillPopupComponentProps) => {
-  const { appInformation, hero } = useAppSelector(({ app }) => app);
+  const { appInformation, gameProfile } = useAppSelector(({ app }) => app);
   const [selectedSkill, setSelectedSkill] = useState<string>();
+
   useEffect(() => {
-    setSelectedSkill(hero?.skill);
-  }, [hero]);
+    setSelectedSkill(gameProfile?.hero?.skill);
+  }, [gameProfile?.hero]);
   const skills = useMemo(() => {
     return (
       <div className={styles.backdrop}>
@@ -31,7 +32,7 @@ const ChangeSkillPopupComponent = ({
                   selectedSkill === value.code && styles.selected
                 }`}
               >
-                <img src={images.changeSkill} alt="Change Skill" />
+                <img src={images.changeSkill} alt='Change Skill' />
               </div>
               <div className={styles.itemContent}>
                 <h3>{value.name}</h3>
@@ -52,7 +53,7 @@ const ChangeSkillPopupComponent = ({
       </div>
       <div className={styles.popupContent}>
         <div className={styles.header}>Choose your pet's skill</div>
-        <img src={images.changeSkill} alt="Change Skill" />
+        <img src={images.changeSkill} alt='Change Skill' />
         <div className={styles.content}>
           {skills}
           <div className={styles.bottom}>

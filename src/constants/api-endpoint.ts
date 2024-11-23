@@ -16,7 +16,8 @@ export const API_ENDPOINTS = {
     FIGHT_WITH_FRIEND: "/api/v1.0/games/game-matchs/fight/by-friend",
     FIGHT_RANKED: "/api/v1.0/games/game-matchs/fight/random",
     UPGRADE_ATTRIBUTE: "/api/v1.0/games/game-profiles/upgrade-attribute",
-    CHANGE_SKILL:"/api/v1.0/games/heroes/change-skill"
+    CHANGE_SKILL: "/api/v1.0/games/heroes/change-skill",
+    CHECK_IN: "/api/v1.0/checkins",
   },
   INVENTORY: {
     GET_ALL: "v1.0/games/inventories",

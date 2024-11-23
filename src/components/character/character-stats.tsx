@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../constants";
-import { useAppDispatch, useAppSelector } from "../../modules/redux/hook";
-import styles from "./character-stats.module.css";
 import { usePopup } from "../../modules/popup/popup.provider";
-import ChangeSkillPopupComponent from "../popup/change-skill/change-skill-popup.component";
+import { useAppDispatch, useAppSelector } from "../../modules/redux/hook";
 import { requestChangeSkill } from "../../modules/redux/slices/app.slice";
+import ChangeSkillPopupComponent from "../popup/change-skill/change-skill-popup.component";
+import styles from "./character-stats.module.css";
 
 const CharacterStats = () => {
   const navigate = useNavigate();
@@ -14,9 +14,6 @@ const CharacterStats = () => {
   const { openPopup, isOpen, closePopup } = usePopup();
 
   const onChangeSkill = (skillCode: string) => {
-    console.log({
-      skillCode,
-    });
     dispacth(requestChangeSkill(skillCode)).unwrap().then(closePopup);
   };
   const onHandleChangeSkill = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,7 +21,7 @@ const CharacterStats = () => {
       <ChangeSkillPopupComponent
         onClose={closePopup}
         onConfirm={onChangeSkill}
-      />
+      />,
     );
   };
 
@@ -42,7 +39,7 @@ const CharacterStats = () => {
               onClick={() => navigate("/house")}
               className={styles.actionButton}
             >
-              <img src={images.rotate} alt="Rotate" />
+              <img src={images.rotate} alt='Rotate' />
             </button>
           ),
         },
@@ -51,7 +48,7 @@ const CharacterStats = () => {
           text: "Level: 23",
           hint: (
             <div className={styles.statusIcon}>
-              <img src={images.info} alt="Info" />
+              <img src={images.info} alt='Info' />
             </div>
           ),
           style: {
@@ -85,14 +82,14 @@ const CharacterStats = () => {
               className={styles.actionButton}
             >
               <img
-                className="skillIcon"
+                className='skillIcon'
                 src={images?.fatalBlowSkill}
-                alt="Fatal blow Skill"
+                alt='Fatal blow Skill'
               />
               <img
                 className={styles.rotateIcon}
                 src={images?.rotate}
-                alt="Rotate"
+                alt='Rotate'
               />
             </button>
           ),

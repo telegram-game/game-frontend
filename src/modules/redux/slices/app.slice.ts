@@ -34,6 +34,7 @@ export interface AppState {
       name: string;
       description: string;
     };
+    hero?: Hero;
   };
   hero?: Hero;
 
@@ -196,6 +197,16 @@ export const requestChangeSkill = createAsyncThunk(
     dispatch(requestGetMe());
   }
 );
+
+export const requestCheckIn = createAsyncThunk(
+  "app/checkIn",
+  async (_, { getState, dispatch }) => {
+    const { app } = getState() as { app: AppState };
+    await Get(`${API_ENDPOINTS.GAME.CHECK_IN}?gameProfileId=${app.gameProfile?.id}`)
+
+    dispatch(requestGetMe());
+  }
+)
 
 const appSlice = createSlice({
   name: "app",

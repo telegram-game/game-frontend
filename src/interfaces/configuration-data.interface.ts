@@ -1,3 +1,6 @@
+import { Token } from "../enums";
+import { AttributeType } from "./app.interface";
+
 type ItemType =
   | "SWORD"
   | "SHIELD"
@@ -151,12 +154,25 @@ export interface SystemConfigData {
   };
 
   baseTokenInvestSpeed: {
-    INGAME:{
+    INGAME: {
       speed: number
       gapTime: number
       description: string
     }
   };
+  upgradeInformation: {
+    [k in AttributeType]: {
+      baseCost: number
+      multiplier: number
+      token: Token
+    }
+  }
+  checkinCampaign: {
+    reward: number
+    stackCoefficient: number
+    maxStack: number
+    rewardToken: Token
+  }
 }
 
 export interface ConfigurationData {
