@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../modules/redux/hook";
 import { requestClaimToken } from "../../../modules/redux/slices/app.slice";
 import styles from "./claim-button.module.css";
 import { images } from "../../../constants";
+import { toast } from "react-toastify";
 
 type ClaimButtonComponentProps = {
   onClaim?: (tokenValue: number) => void;
@@ -15,8 +16,6 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
   const [tokenValue, setTokenValue] = React.useState(0);
   const [gapTimePerSeconds, setGapTimePerSeconds] = React.useState<number>();
   const [speedPerSecond, setSpeedPerSecond] = React.useState(0);
-
-  const ref = React.useRef<NodeJS.Timeout>();
 
   const interval = useRef<NodeJS.Timeout | null>(null);
 
@@ -31,7 +30,7 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
     interval.current = setTimeout(() => {
       setTokenValue(tokenValue + speedPerSecond / 60 / 1000);
     }, 1);
-  }, [interval, speedPerSecond]);
+  }, [interval, tokenValue, speedPerSecond]);
 
   useEffect(() => {
     // TODO
@@ -57,18 +56,16 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
   }, [appInformation, me]);
 
   const handleClaimClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     const lastClaim = new Date(me?.lastClaimedAt?.INGAME || 0);
     const now = new Date();
     const nextClaim = new Date(
-      lastClaim.getTime() + gapTimePerSeconds! * 1000
+      Math.min(lastClaim.getTime(), now.getTime()) + gapTimePerSeconds! * 1000,
     ).getTime();
 
     if (nextClaim > now.getTime()) {
-      console.error(
-        `Please claim after ${new Date(nextClaim).toLocaleString()} seconds`
-      );
+      toast(`Please claim after ${new Date(nextClaim).toLocaleString()}`);
       e.preventDefault();
       return;
     }
@@ -76,23 +73,33 @@ const ClaimButtonComponent = ({ onClaim }: ClaimButtonComponentProps) => {
     dispatch(
       requestClaimToken({
         token: "INGAME",
-      })
+      }),
     );
 
     if (onClaim) onClaim(tokenValue);
   };
 
+  const token = useMemo(() => {
+    return (
+      <div>
+        <span className={styles.tokenValue}>{tokenValue?.toFixed(5)}</span>
+        <span className={styles.tokenRate}>
+          {(speedPerSecond || 0) * 60 * 60} TOK/hour
+        </span>
+      </div>
+    );
+  }, [tokenValue, speedPerSecond]);
+
   return (
     <div className={styles.claimContainer}>
       <div className={styles.claimButton}>
         <div className={styles.tokenInfo}>
-          <img src={images.coin.INGAME} alt="Token Icon" className={styles.icon} />
-          <div>
-            <span className={styles.tokenValue}>{tokenValue?.toFixed(5)}</span>
-            <span className={styles.tokenRate}>
-              {(speedPerSecond || 0) * 60 * 60} TOK/hour
-            </span>
-          </div>
+          <img
+            src={images.coin.INGAME}
+            alt='Token Icon'
+            className={styles.icon}
+          />
+          {token}
         </div>
         <button className={styles.claimButtonText} onClick={handleClaimClick}>
           Claim
