@@ -8,6 +8,7 @@ import Footer from "../footer";
 type InventoryProps = {
   items?: {
     name: string;
+    itemCode: string;
     image: string;
   }[];
 };

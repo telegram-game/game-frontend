@@ -20,7 +20,7 @@ export const API_ENDPOINTS = {
     CHECK_IN: "/api/v1.0/checkins",
   },
   INVENTORY: {
-    GET_ALL: "v1.0/games/inventories",
+    GET_ALL: "/api/v1.0/games/inventories",
   },
   BALANCE: {
     CLAIM: "/api/v1.0/balances/claim",
