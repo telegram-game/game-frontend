@@ -1,9 +1,16 @@
 .container {
     display: flex;
     flex-direction: column;
-
+    gap: 2rem;
     min-height: calc(100vh - 110px);
-    /* justify-content: space-between; */
+    justify-content: space-between;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .flex {
@@ -65,4 +72,83 @@
     padding: 0;
     margin: 0;
     text-align: left;
+}
+
+.referral {
+    border: none;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.userReferral {
+    display: flex;
+    border: none;
+    flex-direction: row;
+    margin: 10px;
+    justify-content: start;
+}
+
+.userImage img {
+    height: 40px;
+    width: 40px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    margin-left: 1rem;
+}
+
+.userInfo p {
+    padding: 0;
+    margin: 0;
+}
+
+.userDetail img {
+    height: 20px;
+    width: 20px;
+
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+.bottomContainer {
+    border: none;
+    border-radius: .75rem;
+    background: linear-gradient(to bottom,
+            #4a90e2,
+            #004e92);
+    display: flex;
+    justify-content: center;
+
+}
+
+.referralContainer {
+    width: 70%;
+}
+
+.copyContainer {
+    width: 20%;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    background-color: transparent;
+    border: none;
+}
+.scroll {
+    max-height: calc(100vh - 613px);
+    overflow-y: auto;
+    /* max-height: calc(100vh - 360px); */
 }
