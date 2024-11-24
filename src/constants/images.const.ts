@@ -1,3 +1,5 @@
+import { ItemType } from "../enums";
+
 export const images = {
   token: "https://staggering.tonkombat.com/assets/TOKIcon-m0UJTJMj.webp",
   rotate: "./assets/icons/rotate.svg",
@@ -23,7 +25,7 @@ export const images = {
       "data:image/webp;base64,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",
   },
   items: {
-    FIRE_SWORD: "https://staggering.tonkombat.com/assets/item_fire_sword-5c8d7d6f.webp",
+    FIRE_SWORD: "https://inazuma.tonkombat.com/6eeb436d-7ff8-48c1-9d11-344bc10d4bac.webp",
     AA: "https://staggering.tonkombat.com/assets/item_aa-2c6b4f6f.webp",
   },
   system: {
@@ -34,5 +36,23 @@ export const images = {
       right: "/assets/icons/arrow-right.svg",
       left: "/assets/icons/arrow-left.svg",
     }
+  },
+  itemTypes: {
+    [ItemType.SWORD]: '/assets/icons/sword.svg',
+    [ItemType.WIND]: '/assets/icons/wind.svg',
+    [ItemType.HELMET]: '/assets/icons/helmet.svg',
+    [ItemType.SHIELD]: '/assets/icons/shield.svg',
+    [ItemType.AMULET]: '/assets/icons/amulet.svg',
+    [ItemType.PET]: '/assets/icons/pet.svg',
+  },
+  socials: {
+    DISCORD: '/assets/icons/discord.svg',
+    TELEGRAM: '/assets/icons/telegram.svg',
+
+    LOCAL: '/assets/icons/local.svg',
+    FACEBOOK: '/assets/icons/facebook.svg',
+    TWITTER: '/assets/icons/twitter.svg',
+    INSTAGRAM: '/assets/icons/instagram.svg',
+    YOUTUBE: 'https://img.freepik.com/premium-vector/free-vector-youtube-icon-logo-social-media-logo_901408-454.jpg',
   }
 };

@@ -1,0 +1,31 @@
+export enum ItemType {
+    SWORD = 'SWORD',
+    WIND = 'WIND',
+    PET = 'PET',
+    SHIELD = 'SHIELD',
+    HELMET = 'HELMET',
+    ARMOR = 'ARMOR',
+    BOOTS = 'BOOTS',
+    RING = 'RING',
+    AMULET = 'AMULET',
+    GLOVES = 'GLOVES',
+    PANTS = 'PANTS',
+    CAPE = 'CAPE',
+    BELT = 'BELT',
+    BRACERS = 'BRACERS',
+    EARRINGS = 'EARRINGS',
+    NECKLACE = 'NECKLACE',
+    SHOULDER = 'SHOULDER',
+    TALISMAN = 'TALISMAN',
+    WAND = 'WAND',
+    ST = 'ST',
+}
+
+export const ItemSupports = [
+    { itemType: ItemType.SWORD, },
+    { itemType: ItemType.WIND },
+    { itemType: ItemType.HELMET },
+    { itemType: ItemType.SHIELD },
+    { itemType: ItemType.AMULET },
+    { itemType: ItemType.PET },
+]

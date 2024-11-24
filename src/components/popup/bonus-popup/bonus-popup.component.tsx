@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { images } from "../../../constants";
-import { useAppSelector } from "../../../modules/redux/hook";
-import styles from "./change-skill-popup.module.css";
+import { useAppDispatch, useAppSelector } from "../../../modules/redux/hook";
+import styles from "./bonus-popup.module.css";
 import { SystemConfigData } from "../../../interfaces/configuration-data.interface";
+import { requestGetCheckIn } from "../../../modules/redux/slices/app.slice";
 
 interface ChangeSkillPopupComponentProps {
   onClose: () => void;
@@ -12,14 +13,16 @@ const BonusPopupComponent = ({
   onClose,
   onCheckIn,
 }: ChangeSkillPopupComponentProps) => {
-  const { appInformation } = useAppSelector(({ app }) => app);
+  const { appInformation, checkIn } = useAppSelector(({ app }) => app);
+  const dispatch = useAppDispatch();
   const [checkinCampaign, setCheckinCampaign] =
     useState<SystemConfigData["checkinCampaign"]>();
 
   useEffect(() => {
-    console.log({
-      checkinCampaign
-    })
+    dispatch(requestGetCheckIn());
+  }, []);
+
+  useEffect(() => {
     setCheckinCampaign(appInformation?.system.checkinCampaign);
   }, [appInformation?.system?.checkinCampaign]);
 
@@ -44,8 +47,7 @@ const BonusPopupComponent = ({
                   <div className={`${styles.item}`} key={index}>
                     <div
                       className={`${styles.itemContent}  ${
-                        (checkinCampaign?.maxStack || 0) >= index + 1 &&
-                        styles.checked
+                        checkIn?.data[index] && styles.checked
                       }`}
                     >
                       <h3>Day {index + 1} </h3>
@@ -60,7 +62,7 @@ const BonusPopupComponent = ({
             <div className={styles.weekend}>
               <div
                 className={`${styles.item}  ${styles.itemWeekend} ${
-                  (checkinCampaign?.maxStack || 0) >= 7 && styles.checked
+                  (checkIn?.data?.length || 0) >= 7 && styles.checked
                 }`}
               >
                 <h3>Day 7</h3>
@@ -74,7 +76,9 @@ const BonusPopupComponent = ({
 
           <div className={styles.bottom}>
             <div className={styles.actionButton}>
-              <button onClick={onCheckIn}>Check In</button>
+              <button onClick={onCheckIn} disabled={checkIn?.hasClaimed}>
+                Check In
+              </button>
             </div>
           </div>
         </div>

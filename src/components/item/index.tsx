@@ -13,7 +13,7 @@ type ItemProps = {
 const Item = ({ data, attributeType, onClick, style }: ItemProps) => {
   const item = useMemo(() => {
     if (!ItemAttributes[attributeType]) return;
-    const { img, title, cost,description } = ItemAttributes[attributeType]!;
+    const { img, title, cost, description } = ItemAttributes[attributeType]!;
 
     return (
       <div className={`${styles.upgradeItem}`} onClick={onClick}>

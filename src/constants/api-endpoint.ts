@@ -18,6 +18,8 @@ export const API_ENDPOINTS = {
     UPGRADE_ATTRIBUTE: "/api/v1.0/games/game-profiles/upgrade-attribute",
     CHANGE_SKILL: "/api/v1.0/games/heroes/change-skill",
     CHECK_IN: "/api/v1.0/checkins",
+    CLAIM: "/api/v1.0/checkins/claim",
+    MISSION: "/api/v1.0/missions"
   },
   INVENTORY: {
     GET_ALL: "/api/v1.0/games/inventories",

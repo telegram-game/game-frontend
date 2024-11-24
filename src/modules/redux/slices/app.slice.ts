@@ -54,6 +54,17 @@ export interface AppState {
       INGAME_2: number;
     };
   };
+  checkIn?: {
+    currentStack: number
+    hasClaimed: boolean
+    data: Array<{
+      id: string
+      userId: string
+      userGameProfileId: string
+      checkinCode: string
+    }>
+  }
+  missions?: Array<any>
 }
 
 const initialState: AppState = {
@@ -64,6 +75,8 @@ const initialState: AppState = {
   hero: undefined,
   matchResult: undefined,
   me: undefined,
+  checkIn: undefined,
+  missions: undefined,
 };
 
 export const requestAppInformation = createAsyncThunk(
@@ -198,13 +211,39 @@ export const requestChangeSkill = createAsyncThunk(
   }
 );
 
+export const requestGetCheckIn = createAsyncThunk(
+  "app/getCheckIn",
+  async (_, { getState, dispatch }) => {
+    const { app } = getState() as { app: AppState };
+    return Get(API_ENDPOINTS.GAME.CHECK_IN + `?gameProfileId=${app.gameProfile?.id}`).then((res: any) => {
+      return {
+        checkIn: res,
+      };
+    })
+  }
+)
+
 export const requestCheckIn = createAsyncThunk(
   "app/checkIn",
   async (_, { getState, dispatch }) => {
     const { app } = getState() as { app: AppState };
-    await Get(`${API_ENDPOINTS.GAME.CHECK_IN}?gameProfileId=${app.gameProfile?.id}`)
+    await Post(`${API_ENDPOINTS.GAME.CLAIM}`, {
+      gameProfileId: app.gameProfile?.id
+    }
+    ).then(() => {
+      dispatch(requestGetCheckIn());
+      dispatch(requestGetMe());
+    }).catch(() => { })
 
-    dispatch(requestGetMe());
+  }
+)
+
+export const requestGetMission = createAsyncThunk(
+  "app/getMission",
+  async (_, { getState, dispatch }) => {
+    return Get(API_ENDPOINTS.GAME.MISSION).then((res: any) => ({
+      missions: res,
+    }))
   }
 )
 
@@ -254,6 +293,18 @@ const appSlice = createSlice({
     });
 
     builder.addCase(requestGetMe.fulfilled, (state, action) => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    });
+    builder.addCase(requestGetCheckIn.fulfilled, (state, action) => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    });
+    builder.addCase(requestGetMission.fulfilled, (state, action) => {
       return {
         ...state,
         ...action.payload,

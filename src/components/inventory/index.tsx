@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
+import { images } from "../../constants";
+import { ItemSupports } from "../../enums";
+import { useAppSelector } from "../../modules/redux/hook";
 import Character from "../character/character";
 import Tab from "../tab";
 import InventoryItem from "./inventory-item";
 import styles from "./inventory.module.css";
-import Footer from "../footer";
 
 type InventoryProps = {
   items?: {
@@ -27,19 +29,52 @@ const Inventory = ({ items }: InventoryProps) => {
       value: "OTHER",
     },
   ];
+  const { hero } = useAppSelector(({ app }) => app);
+
+  const getImageByItemCode = (itemCode: string, type: string) => {
+    return (images.items as any)[itemCode] || (images.itemTypes as any)[type];
+  };
 
   const itemMemo = React.useMemo(() => {
     const el: Array<React.ReactNode> = [];
     if (!items?.length) return <div></div>;
 
-    for (let i = 0; i < items.length; i += 2) {
-      let item1 = items[i];
-      let item2 = items[i + 1] !== undefined ? items[i + 1] : null; // Check if the second item exists
+    ItemSupports.map((item, index) => {
+      return (
+        <Fragment key={index}>
+          <InventoryItem
+            item={{
+              name: item.toString(),
+              image: item.toString(),
+              itemType: item.toString(),
+            }}
+          />
+        </Fragment>
+      );
+    });
+
+    for (let i = 0; i < ItemSupports.length; i += 2) {
+      let default1 = ItemSupports[i];
+      let default2 = ItemSupports[i + 1];
+      const heroItem1 = hero?.items?.find(
+        (x) => x.itemType === default1.itemType,
+      );
+      const heroItem2 = hero?.items?.find(
+        (x) => x.itemType === default2.itemType,
+      );
       el.push(
         <Fragment key={i}>
-          {item1 ? <InventoryItem item={item1} /> : <div></div>}
+          <InventoryItem
+            item={{
+              image: getImageByItemCode(heroItem1?.itemCode, default1.itemType),
+            }}
+          />
           <div></div>
-          {item2 ? <InventoryItem item={item2} /> : <div></div>}
+          <InventoryItem
+            item={{
+              image: getImageByItemCode(heroItem2?.itemCode, default2.itemType),
+            }}
+          />
         </Fragment>,
       );
     }
@@ -58,7 +93,13 @@ const Inventory = ({ items }: InventoryProps) => {
       <Tab data={tabs} defaultValue={"EQUIPMENT"} onChanged={() => {}} />
       <div className={styles.inventoryItem}>
         {items?.map((item, index) => (
-          <InventoryItem item={item} key={index} />
+          <InventoryItem
+            item={{
+              name: item.name,
+              image: getImageByItemCode(item.itemCode, item.name),
+            }}
+            key={index}
+          />
         ))}
       </div>
     </>

@@ -3,15 +3,15 @@ import styles from "./inventory-item.module.css";
 
 interface InventoryItemProps {
   item: {
-    name: string;
-    itemCode: string;
+    name?: string;
+    itemType?: string;
     image: string;
   };
 }
 const InventoryItem = ({ item }: InventoryItemProps) => {
   return (
     <button className={styles.button}>
-      <img src={(images.items as any)[item.itemCode as any]} alt={item.itemCode} />
+      <img src={item?.image} alt={item?.itemType} />
     </button>
   );
 };
