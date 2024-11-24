@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .flex {
@@ -71,7 +71,15 @@
 .content p {
     padding: 0;
     margin: 0;
+    font-size: .75rem;
+    line-height: 1rem;
     text-align: left;
+}
+
+.description {
+    font-size: .625rem;
+    line-height: .75rem;
+    font-weight: 400;
 }
 
 .referral {
@@ -99,11 +107,22 @@
     align-items: start;
     justify-content: start;
     margin-left: 1rem;
+    gap: .25rem;
 }
 
 .userInfo p {
+    display: flex;
     padding: 0;
     margin: 0;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.userDetail p {
+    color: rgb(236 236 237);
+    font-weight: 300;
+    font-size: .875rem;
+    line-height: 1.25rem;
 }
 
 .userDetail img {
@@ -122,9 +141,11 @@
 .bottomContainer {
     border: none;
     border-radius: .75rem;
-    background: linear-gradient(to bottom,
+    /* background: linear-gradient(to bottom,
             #4a90e2,
-            #004e92);
+            #004e92); */
+
+    background: linear-gradient(180deg, #41a5ef, #2695e7 51.86%, #0c6dbd 108.04%);
     display: flex;
     justify-content: center;
 
@@ -146,9 +167,14 @@
     margin: 10px;
     background-color: transparent;
     border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+
 }
+
 .scroll {
-    max-height: calc(100vh - 613px);
+    max-height: calc(100vh - 495px);
     overflow-y: auto;
-    /* max-height: calc(100vh - 360px); */
 }

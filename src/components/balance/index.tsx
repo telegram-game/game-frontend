@@ -2,7 +2,7 @@ import { images } from "../../constants";
 import styles from "./balance.module.css";
 
 const BalanceComponent = ({
-  token = 0,
+  token,
   text = "Balance: ",
 }: {
   token?: number;
@@ -17,7 +17,7 @@ const BalanceComponent = ({
           className={styles.token}
         />
         <span className={styles.balanceText}>
-          {text} {(token || 0).toFixed(2)}
+          {text} {token ? (token || 0).toFixed(2) : ""}
         </span>
       </div>
     </div>
