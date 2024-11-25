@@ -21,7 +21,7 @@ const CharacterStats = () => {
       <ChangeSkillPopupComponent
         onClose={closePopup}
         onConfirm={onChangeSkill}
-      />,
+      />
     );
   };
 
@@ -39,7 +39,7 @@ const CharacterStats = () => {
               onClick={() => navigate("/house")}
               className={styles.actionButton}
             >
-              <img src={images.rotate} alt='Rotate' />
+              <img src={images.rotate} alt="Rotate" />
             </button>
           ),
         },
@@ -48,7 +48,7 @@ const CharacterStats = () => {
           text: "Level: 23",
           hint: (
             <div className={styles.statusIcon}>
-              <img src={images.info} alt='Info' />
+              <img src={images.info} alt="Info" />
             </div>
           ),
           style: {
@@ -82,14 +82,14 @@ const CharacterStats = () => {
               className={styles.actionButton}
             >
               <img
-                className='skillIcon'
+                className="skillIcon"
                 src={images?.fatalBlowSkill}
-                alt='Fatal blow Skill'
+                alt="Fatal blow Skill"
               />
               <img
                 className={styles.rotateIcon}
                 src={images?.rotate}
-                alt='Rotate'
+                alt="Rotate"
               />
             </button>
           ),
@@ -116,11 +116,7 @@ const CharacterStats = () => {
     );
   }, [hero, gameProfile, navigate, isOpen, onHandleChangeSkill]);
 
-  return (
-    <>
-      <div className={styles.cardContainer}>{statics}</div>
-    </>
-  );
+  return <div className={styles.cardContainer}>{statics}</div>;
 };
 
 export default CharacterStats;
