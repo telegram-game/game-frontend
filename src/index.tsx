@@ -9,6 +9,11 @@ import { LoaderProvider } from "./modules/loader/loader.provider";
 import { PopupProvider } from "./modules/popup/popup.provider";
 import { ReduxProviders } from "./modules/redux/provider";
 import reportWebVitals from "./reportWebVitals";
+import { init } from "@telegram-apps/sdk-react";
+
+// Initialize the package.
+init();
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

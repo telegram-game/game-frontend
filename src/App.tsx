@@ -19,9 +19,7 @@ function App() {
   const loader = useLoader();
 
   useEffect(() => {
-    try {
-      init();
-    } catch {
+    if (!miniApp.isSupported()) {
       if (window.location.pathname !== "/unsupport") {
         window.location.href = "./unsupport";
         window.location.reload();
