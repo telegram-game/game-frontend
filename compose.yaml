@@ -8,3 +8,5 @@ services:
       REACT_APP_API_ENDPOINT: https://game-backend-n47q.onrender.com
     ports:
       - 8000:80
+    volumes:
+      - ./build:/usr/share/nginx/html
