@@ -28,9 +28,9 @@ function App() {
     // }
 
     // Check if all required components are supported.
-    if (!backButton.isSupported() || !miniApp.isSupported()) {
-      throw new Error("ERR_NOT_SUPPORTED");
-    }
+    // if (!backButton.isSupported() || !miniApp.isSupported()) {
+    //   throw new Error("ERR_NOT_SUPPORTED");
+    // }
     miniApp.mount();
     miniApp.bindCssVars();
 
