@@ -11,23 +11,29 @@ const Character = () => {
         <g>
           <image
             href={images.hero.bird}
-            height="22%"
-            width="100%"
+            style={{
+              height: "22%",
+              width: "100%",
+            }}
             x="-26%"
             y="28%"
           ></image>
           <image
             href={images.hero.pet}
-            height="30%"
-            width="100%"
+            style={{
+              height: "30%",
+              width: "100%",
+            }}
             x="-26%"
             y="9%"
           ></image>
         </g>
         <image
           href={images.hero.wind}
-          height="75%"
-          width="100%"
+          style={{
+            height: "75%",
+            width: "100%",
+          }}
           x="0%"
           y="20%"
         ></image>

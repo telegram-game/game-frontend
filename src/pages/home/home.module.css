@@ -8,7 +8,7 @@
 }
 
 .characterContainer {
-  /* height: 100vh; */
+  height: calc(100vh - 312px);
   display: flex;
   flex-direction: column;
 }
@@ -31,7 +31,6 @@
   width: calc(100% - 40px);
   top: 24%;
   z-index: 1;
-
 }
 
 .icon {
