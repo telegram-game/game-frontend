@@ -7,7 +7,7 @@ import { requestAppInformation } from "./modules/redux/slices/app.slice";
 import { requestSignIn } from "./modules/redux/slices/auth.slice";
 import { routes } from "./routers";
 
-import { backButton, miniApp } from "@telegram-apps/sdk";
+import { miniApp } from "@telegram-apps/sdk";
 type TelegramKeyPair =
   | "#tgWebAppData"
   | "tgWebAppPlatform"
@@ -30,9 +30,6 @@ function App() {
     // Check if all required components are supported.
     // if (!backButton.isSupported() || !miniApp.isSupported()) {
     //   throw new Error("ERR_NOT_SUPPORTED");
-    // }
-    miniApp.mount();
-    miniApp.bindCssVars();
 
     const telegramInfo = new URLSearchParams(window.location.hash);
     const data: Record<TelegramKeyPair, any> = {} as any;
