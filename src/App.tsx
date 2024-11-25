@@ -1,4 +1,3 @@
-import { miniApp } from "@telegram-apps/sdk";
 import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.module.css";
@@ -20,13 +19,15 @@ function App() {
   const loader = useLoader();
 
   useEffect(() => {
-    if (!miniApp.mount.isAvailable()) {
-      if (window.location.pathname !== "/unsupport")
+    try {
+      init();
+    } catch {
+      if (window.location.pathname !== "/unsupport") {
         window.location.href = "./unsupport";
+        window.location.reload();
+      }
       return;
     }
-
-    init();
     const telegramInfo = new URLSearchParams(window.location.hash);
     const data: Record<TelegramKeyPair, any> = {} as any;
 
