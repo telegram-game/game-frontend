@@ -13,6 +13,7 @@ import ShopPage from "./pages/shop";
 import TierPage from "./pages/tier";
 import UpgradePage from "./pages/upgrade";
 import Footer from "./components/footer";
+import UnsupportPage from "./pages/unsupport";
 
 export const routes: Array<
   RouteObject & { name: string; isNav: boolean; icon?: string }
@@ -115,6 +116,12 @@ export const routes: Array<
     name: "404",
     isNav: false,
     element: <NotFoundPage />,
+  },
+  {
+    path: "unsupport",
+    name: "unsupport",
+    isNav: false,
+    element: <UnsupportPage />,
   },
   {
     path: "shop",

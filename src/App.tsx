@@ -1,3 +1,4 @@
+import { miniApp } from "@telegram-apps/sdk";
 import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.module.css";
@@ -7,6 +8,7 @@ import { requestAppInformation } from "./modules/redux/slices/app.slice";
 import { requestSignIn } from "./modules/redux/slices/auth.slice";
 import { routes } from "./routers";
 
+import { init } from "@telegram-apps/sdk";
 type TelegramKeyPair =
   | "#tgWebAppData"
   | "tgWebAppPlatform"
@@ -18,6 +20,13 @@ function App() {
   const loader = useLoader();
 
   useEffect(() => {
+    if (!miniApp.mount.isAvailable()) {
+      if (window.location.pathname !== "/unsupport")
+        window.location.href = "./unsupport";
+      return;
+    }
+
+    init();
     const telegramInfo = new URLSearchParams(window.location.hash);
     const data: Record<TelegramKeyPair, any> = {} as any;
 
@@ -38,7 +47,7 @@ function App() {
         requestSignIn({
           provider: "TELEGRAM",
           code: String(data["#tgWebAppData"]),
-        }),
+        })
       ).unwrap(),
     ]).then(() => {
       loader.stop();

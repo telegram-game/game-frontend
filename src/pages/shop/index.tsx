@@ -1,3 +1,4 @@
+import { invoice } from "@telegram-apps/sdk";
 import { useEffect, useState } from "react";
 import Tab from "../../components/tab";
 import { images } from "../../constants";
@@ -5,6 +6,7 @@ import { useLoader } from "../../modules/loader/loader.provider";
 import { useAppDispatch, useAppSelector } from "../../modules/redux/hook";
 import { buyChest } from "../../modules/redux/slices/app.slice";
 import styles from "./shop.module.css";
+import { toast } from "react-toastify";
 
 const ShopPage = () => {
   const { appInformation } = useAppSelector(({ app }) => app);
@@ -42,8 +44,13 @@ const ShopPage = () => {
     start();
     dispatch(buyChest(itemCode))
       .unwrap()
-      .then((rs: any) => {
-        window.open(rs.url, "_blank");
+      .then(async (app: any) => {
+        if (invoice.open.isAvailable()) {
+          await invoice.open(app!.paymentItem.codeOrUrl, "url");
+        } else {
+          // toast.error("Please install Telegram App");
+          window.open(app!.paymentItem.codeOrUrl, "_blank");
+        }
       })
       .finally(stop);
   };

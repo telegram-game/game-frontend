@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import BalanceComponent from "../../components/balance";
 import { images } from "../../constants";
 import styles from "./friend.module.css";
+import { shareURL } from "@telegram-apps/sdk-react";
 
 const FriendPage = () => {
   const friend = useMemo(() => {
@@ -10,7 +11,7 @@ const FriendPage = () => {
       .map(() => (
         <div className={`${styles.userReferral} ${styles.referral}`}>
           <div className={styles.userImage}>
-            <img src={images.system.user} alt='user' />
+            <img src={images.system.user} alt="user" />
           </div>
           <div className={styles.userInfo}>
             <div className={styles.userName}>
@@ -18,7 +19,7 @@ const FriendPage = () => {
             </div>
             <div className={styles.userDetail}>
               <p>
-                You received: <img src={images.coin.INGAME} alt='Token' />
+                You received: <img src={images.coin.INGAME} alt="Token" />
                 &nbsp; {20.110459}
               </p>
             </div>
@@ -46,7 +47,7 @@ const FriendPage = () => {
         <>
           <div className={styles.reward}>
             <div className={styles.rewardImage}>
-              <img className={styles.gift} src={item.icon} alt='red gift' />
+              <img className={styles.gift} src={item.icon} alt="red gift" />
             </div>
             <div className={styles.content}>
               <p>
@@ -69,7 +70,7 @@ const FriendPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.mainContent}>
-        <BalanceComponent text='' token={10} />
+        <BalanceComponent text="" token={10} />
         <div className={styles.flex}>{referralInfo}</div>
         <div className={`${styles.flex} ${styles.referral}`}>
           <div className={styles.referralLeft}>
@@ -89,11 +90,21 @@ const FriendPage = () => {
         <div
           className={`${styles.bottomContainer} ${styles.referralContainer}`}
         >
-          <button className={styles.button}>Invite a friend</button>
+          <button
+            onClick={() => {
+              shareURL(
+                `https://t.me/amcfggamedev_bot/amcfggamedev/app?startapp=850598904`,
+                "Check out this cool group!"
+              );
+            }}
+            className={styles.button}
+          >
+            Invite a friend
+          </button>
         </div>
         <div className={`${styles.bottomContainer} ${styles.copyContainer}`}>
           <button className={styles.button}>
-            <img src={images.system.copy} alt='copy' />
+            <img src={images.system.copy} alt="copy" />
           </button>
         </div>
       </div>

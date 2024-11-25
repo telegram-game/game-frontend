@@ -9,9 +9,8 @@ import { LoaderProvider } from "./modules/loader/loader.provider";
 import { PopupProvider } from "./modules/popup/popup.provider";
 import { ReduxProviders } from "./modules/redux/provider";
 import reportWebVitals from "./reportWebVitals";
-
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement,
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
@@ -33,7 +32,7 @@ root.render(
         </PopupProvider>
       </LoaderProvider>
     </div>
-  </>,
+  </>
   // <React.StrictMode>// </React.StrictMode>
 );
 

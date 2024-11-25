@@ -65,6 +65,7 @@ export interface AppState {
     }>;
   };
   missions?: Array<any>;
+  paymentItem?: { codeOrUrl: string; provider: string | "TELEGRAM" };
 }
 
 const initialState: AppState = {
@@ -77,6 +78,7 @@ const initialState: AppState = {
   me: undefined,
   checkIn: undefined,
   missions: undefined,
+  paymentItem: undefined,
 };
 
 export const requestAppInformation = createAsyncThunk(
@@ -121,7 +123,13 @@ export const buyChest = createAsyncThunk(
     const rs = await Post(API_ENDPOINTS.INVENTORY.BUY.CHEST, {
       chestCode,
       gameProfileId: app.gameProfile?.id,
-    }).catch(() => {});
+    })
+      .then((rs: any) => {
+        return {
+          paymentItem: rs,
+        };
+      })
+      .catch(() => {});
     dispatch(requestAppInformation());
     dispatch(requestGetAllInventories());
     return rs;
