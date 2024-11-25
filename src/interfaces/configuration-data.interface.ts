@@ -26,8 +26,15 @@ type Star = "1" | "2" | "3" | "4" | "5";
 export interface Chest {
   code: string;
   name: string;
+  description: string;
   itemTypeRates: {
     [key in ItemType]?: number;
+  };
+  cost: {
+    token: string;
+    value: number;
+    isExtenalToken: boolean;
+    externalTokenProvider: string;
   };
   itemTypeCodeRates: {
     [key in ItemType]?: {
@@ -155,24 +162,24 @@ export interface SystemConfigData {
 
   baseTokenInvestSpeed: {
     INGAME: {
-      speed: number
-      gapTime: number
-      description: string
-    }
+      speed: number;
+      gapTime: number;
+      description: string;
+    };
   };
   upgradeInformation: {
     [k in AttributeType]: {
-      baseCost: number
-      multiplier: number
-      token: Token
-    }
-  }
+      baseCost: number;
+      multiplier: number;
+      token: Token;
+    };
+  };
   checkinCampaign: {
-    reward: number
-    stackCoefficient: number
-    maxStack: number
-    rewardToken: Token
-  }
+    reward: number;
+    stackCoefficient: number;
+    maxStack: number;
+    rewardToken: Token;
+  };
 }
 
 export interface ConfigurationData {
