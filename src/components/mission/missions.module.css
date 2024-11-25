@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  max-width: 343px;
 }
 
 /* Title */
@@ -88,7 +87,6 @@
   width: 100%;
   padding: 12px;
 }
-
 
 .content p {
   display: flex;

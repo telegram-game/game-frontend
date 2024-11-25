@@ -7,7 +7,7 @@ import { requestAppInformation } from "./modules/redux/slices/app.slice";
 import { requestSignIn } from "./modules/redux/slices/auth.slice";
 import { routes } from "./routers";
 
-import { init } from "@telegram-apps/sdk";
+import { init, miniApp } from "@telegram-apps/sdk";
 type TelegramKeyPair =
   | "#tgWebAppData"
   | "tgWebAppPlatform"
@@ -52,6 +52,7 @@ function App() {
       ).unwrap(),
     ]).then(() => {
       loader.stop();
+      miniApp.ready();
     });
   }, []);
 
