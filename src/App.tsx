@@ -25,9 +25,9 @@ function App() {
       data[key as TelegramKeyPair] = value;
     });
 
-    if (!data || !data["#tgWebAppData"]) {
-      throw new Error("Telegram user data not found");
-    }
+    // if (!data || !data["#tgWebAppData"]) {
+    //   throw new Error("Telegram user data not found");
+    // }
 
     loader.start({
       backgroundColor: "#1d2b4e",

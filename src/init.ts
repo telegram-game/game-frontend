@@ -15,9 +15,6 @@ export function init(debug: boolean): void {
   // Set @telegram-apps/sdk-react debug mode.
   $debug.set(debug);
 
-  console.log({
-    debug,
-  });
   // Initialize special event handlers for Telegram Desktop, Android, iOS, etc.
   // Also, configure the package.
   initSDK();

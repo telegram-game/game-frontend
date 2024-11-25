@@ -19,6 +19,7 @@ const root = ReactDOM.createRoot(
 try {
   // Configure all application dependencies.
   init(retrieveLaunchParams().startParam === "debug");
+  // init(true);
 
   root.render(
     <>

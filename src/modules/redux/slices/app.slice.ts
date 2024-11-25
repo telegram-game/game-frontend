@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk, createSlice, PrepareAction } from "@reduxjs/toolkit";
 import { API_ENDPOINTS } from "../../../constants";
 import {
   AppInformation,
@@ -129,7 +129,7 @@ export const buyChest = createAsyncThunk(
           paymentItem: rs,
         };
       })
-      .catch(() => {});
+      .catch(() => { });
     dispatch(requestAppInformation());
     dispatch(requestGetAllInventories());
     return rs;
@@ -258,7 +258,7 @@ export const requestCheckIn = createAsyncThunk(
         dispatch(requestGetCheckIn());
         dispatch(requestGetMe());
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 );
 
@@ -270,6 +270,15 @@ export const requestGetMission = createAsyncThunk(
     }));
   }
 );
+
+export const removeMatchResult = createAction<PrepareAction<any>>(
+  'app/removeMatchResult',
+  () => {
+    return {
+      payload: undefined
+    }
+  }
+)
 
 const appSlice = createSlice({
   name: "app",
@@ -340,6 +349,9 @@ const appSlice = createSlice({
         ...action.payload,
       };
     });
+    builder.addCase(removeMatchResult, (state, action) => {
+      state.matchResult = action.payload
+    })
   },
 });
 

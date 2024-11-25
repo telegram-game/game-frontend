@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MatchType } from "../../../interfaces";
 import { usePopup } from "../../../modules/popup/popup.provider";
-import { useAppDispatch } from "../../../modules/redux/hook";
+import { useAppDispatch, useAppSelector } from "../../../modules/redux/hook";
 import { requestFight } from "../../../modules/redux/slices/app.slice";
 import FindFriendPopup from "../../popup/find-friend";
 import styles from "./attack-button.module.css";
@@ -11,7 +11,13 @@ const AttackButtonComponent = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [matchType, setMatchType] = React.useState<MatchType>("RANKED");
+  const [hasMatched, setHasMatched] = React.useState<boolean>(false);
   const { openPopup, closePopup } = usePopup();
+  const { matchResult } = useAppSelector((state) => state.app);
+
+  useEffect(() => {
+    if (matchResult && hasMatched) navigate("/fight");
+  }, [matchResult, hasMatched]);
 
   const stageMemo = React.useMemo(() => {
     const matchs: Array<{ title: string; value: MatchType }> = [
@@ -56,7 +62,7 @@ const AttackButtonComponent = () => {
       .unwrap()
       .then(() => {
         closePopup();
-        navigate("/fight");
+        setHasMatched(true);
       });
   };
 
@@ -83,7 +89,7 @@ const AttackButtonComponent = () => {
       )
         .unwrap()
         .then(() => {
-          navigate("/fight");
+          setHasMatched(true);
         });
     }
   };
