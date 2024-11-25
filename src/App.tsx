@@ -7,7 +7,7 @@ import { requestAppInformation } from "./modules/redux/slices/app.slice";
 import { requestSignIn } from "./modules/redux/slices/auth.slice";
 import { routes } from "./routers";
 
-import { init, miniApp } from "@telegram-apps/sdk";
+import { backButton, miniApp } from "@telegram-apps/sdk";
 type TelegramKeyPair =
   | "#tgWebAppData"
   | "tgWebAppPlatform"
@@ -19,13 +19,21 @@ function App() {
   const loader = useLoader();
 
   useEffect(() => {
-    if (!miniApp.isSupported()) {
-      if (window.location.pathname !== "/unsupport") {
-        window.location.href = "./unsupport";
-        window.location.reload();
-      }
-      return;
+    // if (!miniApp.isSupported()) {
+    //   if (window.location.pathname !== "/unsupport") {
+    //     window.location.href = "./unsupport";
+    //     window.location.reload();
+    //   }
+    //   return;
+    // }
+
+    // Check if all required components are supported.
+    if (!backButton.isSupported() || !miniApp.isSupported()) {
+      throw new Error("ERR_NOT_SUPPORTED");
     }
+    miniApp.mount();
+    miniApp.bindCssVars();
+
     const telegramInfo = new URLSearchParams(window.location.hash);
     const data: Record<TelegramKeyPair, any> = {} as any;
 
